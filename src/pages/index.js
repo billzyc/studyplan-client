@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useEffect } from 'react';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import { gsap } from 'gsap';
+import Link from 'next/link';
 
 import styles from './index.module.scss';
 
@@ -34,9 +35,12 @@ function Landing() {
       <Head>
         <title>Course Planner</title>
       </Head>
-      <section className={styles.hero} ref={containerRef}>
-        <p>hello!</p>
-      </section>
+      <p>hello! This is work in progress</p>
+      <div className={styles.links}>
+        <Link href="/login">
+          <a>Login Page</a>
+        </Link>
+      </div>
     </section>
   );
 }
