@@ -1,6 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import { Provider } from 'react-redux';
+import { CookiesProvider } from 'react-cookie';
 
 import { initializeStore } from './index';
 
@@ -10,9 +11,11 @@ export const withRedux = (PageComponent, { ssr = true } = {}) => {
   const WithRedux = ({ initialReduxState, ...props }) => {
     const store = getOrInitializeStore(initialReduxState);
     return (
-      <Provider store={store}>
-        <PageComponent {...props} />
-      </Provider>
+      <CookiesProvider>
+        <Provider store={store}>
+          <PageComponent {...props} />
+        </Provider>
+      </CookiesProvider>
     );
   };
 

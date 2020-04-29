@@ -1,0 +1,17 @@
+@import '../../styles/shared.scss';
+
+.navbar {
+  position: relative;
+  @include position-0;
+  @include flex-center-vert;
+  height: $navbar-height-mobile;
+  width: 100%;
+  background-color: $pink;
+
+  .hamburgerButton {
+    position: absolute;
+    right: px(30);
+    height: px(20);
+    width: px(25);
+  }
+}

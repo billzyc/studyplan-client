@@ -1,0 +1,55 @@
+@import '../../styles/shared.scss';
+
+.UserLogin {
+  $inputWidth: px(300);
+
+  @include position-100(relative);
+  @include flex-center;
+  flex-direction: column;
+
+  h2 {
+    position: absolute;
+    top: px(125);
+    color: $grey;
+  }
+
+  .emailInput,
+  .passwordInput {
+    width: $inputWidth;
+    height: px(50);
+    margin-bottom: px(15);
+    text-indent: px(10);
+    border: solid 1px;
+    border-color: $tan;
+    border-radius: px(5);
+    color: $grey;
+    background-color: transparent;
+  }
+
+  .submit {
+    width: $inputWidth;
+    height: px(50);
+    color: $beige;
+    background-color: $pink;
+    border-radius: px(5);
+  }
+
+  @include breakpoint(desktopSm) {
+    $inputWidth: px(500);
+
+    h2 {
+      top: px(150);
+    }
+
+    .emailInput,
+    .passwordInput {
+      width: $inputWidth;
+      height: px(50);
+      margin-bottom: px(30);
+    }
+
+    .submit {
+      width: $inputWidth;
+    }
+  }
+}
