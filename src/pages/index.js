@@ -41,6 +41,11 @@ function Landing() {
           <a>Login Page</a>
         </Link>
       </div>
+      <div className={styles.links}>
+        <Link href="/register">
+          <a>Register</a>
+        </Link>
+      </div>
     </section>
   );
 }
