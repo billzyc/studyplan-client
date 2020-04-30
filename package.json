@@ -1,10 +1,31 @@
 {
+  "name": "studyplan-client",
+  "private": true,
   "license": "MIT",
+  "version": "0.1.0",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "prestart": "next build",
-    "start": "next start -p ${PORT}"
+    "start": "next start -p ${PORT}",
+    "\n ######################  NPM Secondary Pipeline  ######################": "",
+    "build:ssr": "next build",
+    "build:prod:static": "next build && next export && cross-env BUILD_ENV=production npm-run-all robots-txt-generator sitemap-generator",
+    "build:staging:static": "cross-env BUILD_ENV=staging next build && next export",
+    "ci-prod-server": "serve out &",
+    "sitemap-generator": "node scripts/nextjs-sitemap-generator.js",
+    "robots-txt-generator": "node scripts/robots-txt-generator.js",
+    "\n ######################  Support Development Tools  ######################": "",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build-storybook": "build-storybook",
+    "component": "node scripts/component.js",
+    "page": "node scripts/component.js --page",
+    "\n ######################  Automation Tools  ######################": "",
+    "linters": "npm-run-all -p js-lint sass-lint adviser-dev",
+    "adviser-dev": "adviser --tags dev --verbose",
+    "adviser-ci": "adviser --tags lighthouse,stage --verbose --quiet",
+    "js-lint": "eslint './src/**/*.js' -c ./.eslintrc.json --quiet --ignore-pattern .gitignore",
+    "sass-lint": "stylelint './src/**/*.scss'"
   },
   "dependencies": {
     "@jam3/detect": "1.0.2",
@@ -172,6 +193,13 @@
     "src/**/*.{js,json,scss}": [
       "prettier --write"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo 'Pre-commit checks...' && lint-staged",
+      "pre-push": "echo 'Pre-push checks...' && npm run linters",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "browserslist": [
     ">0.2%",
