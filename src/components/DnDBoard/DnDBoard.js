@@ -5,12 +5,18 @@ import classnames from 'classnames';
 
 import styles from './DnDBoard.module.scss';
 
-const DnDBoard = props => {
+export const DnDBoardType = {
+  UNASSIGNED: 'unassigned',
+  ASSIGNED: 'assigned'
+};
+
+const DnDBoard = ({ id, children, styleClass = DnDBoard.ASSIGNED }) => {
   const drop = e => {
     e.preventDefault();
     const cardId = e.dataTransfer.getData('cardId');
     const card = document.getElementById(cardId);
     card.style.display = 'block';
+    console.log(card);
     e.target.appendChild(card);
   };
 
@@ -19,8 +25,8 @@ const DnDBoard = props => {
   };
 
   return (
-    <div id={props.id} onDrop={drop} onDragOver={dragOver} className={classnames(styles.board)}>
-      {props.children}
+    <div id={id} onDrop={drop} onDragOver={dragOver} className={classnames(styles[styleClass])}>
+      {children}
     </div>
   );
 };

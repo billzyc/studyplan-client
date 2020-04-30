@@ -1,15 +1,11 @@
 @import '../../styles/shared.scss';
 
 .card {
+  width: 100%;
   height: px(50);
-  margin: px(15) px(15);
-  margin-top: 0;
+  margin-bottom: px(15);
   padding: px(15);
   border-radius: px(5);
   background-color: $pink;
   cursor: pointer;
-
-  &:first-child {
-    margin-top: px(15);
-  }
 }

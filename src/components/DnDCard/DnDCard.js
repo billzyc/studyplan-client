@@ -5,7 +5,7 @@ import classnames from 'classnames';
 
 import styles from './DnDCard.module.scss';
 
-const DnDCard = props => {
+const DnDCard = ({ id, children }) => {
   const dragStart = e => {
     const target = e.target;
     e.dataTransfer.setData('cardID', target.id);
@@ -15,14 +15,8 @@ const DnDCard = props => {
     e.stopPropagation();
   };
   return (
-    <div
-      id={props.id}
-      onDragStart={dragStart}
-      onDragOver={dragOver}
-      draggable="true"
-      className={classnames(styles.card)}
-    >
-      {props.children}
+    <div id={id} onDragStart={dragStart} onDragOver={dragOver} draggable="true" className={classnames(styles.card)}>
+      {children}
     </div>
   );
 };

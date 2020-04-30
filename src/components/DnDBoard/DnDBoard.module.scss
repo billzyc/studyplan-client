@@ -1,12 +1,27 @@
 @import '../../styles/shared.scss';
 
-.board {
-  display: flex;
-  flex-direction: column;
+.assigned,
+.unassigned {
   flex-shrink: 0;
-  width: px(300);
-  margin: px(15);
   border-radius: px(5);
+  padding: px(10);
   background-color: $tan;
   overflow-y: scroll;
+}
+
+.assigned {
+  @include flex-center-vert;
+  flex-direction: column;
+  width: px(300);
+  margin: px(15);
+}
+
+.unassigned {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: px(10);
+  row-gap: px(10);
+  grid-template-rows: px(50);
+  @include box(80%);
+  margin-bottom: px(20);
 }
