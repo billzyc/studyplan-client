@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 
 import { withRedux } from '../../redux/withRedux';
 
-import styles from './Planner.module.scss';
+import styles from './planner.module.scss';
 
 function Planner({ copy }) {
   const CoursePlanner = dynamic(

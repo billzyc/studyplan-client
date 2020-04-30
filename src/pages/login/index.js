@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 
 import { withRedux } from '../../redux/withRedux';
 
-import styles from './Login.module.scss';
+import styles from './login.module.scss';
 
 function Login({ copy }) {
   const UserLogin = dynamic(() => import(/* webpackChunkName: "LoginModal" */ '../../components/UserLogin/UserLogin'), {

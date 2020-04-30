@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 
 import { withRedux } from '../../redux/withRedux';
 
-import styles from './Register.module.scss';
+import styles from './register.module.scss';
 
 function Register({ copy }) {
   const UserRegister = dynamic(
