@@ -11,8 +11,6 @@ import RotateScreen from '../components/RotateScreen/RotateScreen';
 
 import detect, { isBrowser } from '../utils/detect';
 
-import './app.css';
-
 // This default export is required in a new `pages/_app.js` file.
 function App({ Component, pageProps }) {
   const [isSupported, setIsSupported] = useState(true);
