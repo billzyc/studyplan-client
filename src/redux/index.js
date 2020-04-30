@@ -2,10 +2,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import appReducers from './modules/app';
+import profileReducers from './modules/profile';
 
 const reducers = combineReducers({
-  // NOTE: add more reducers here
-  app: appReducers
+  app: appReducers,
+  profile: profileReducers
 });
 
 export const initializeStore = preloadedState => {

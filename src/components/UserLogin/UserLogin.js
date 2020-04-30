@@ -6,6 +6,8 @@ import classnames from 'classnames';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
+import { useDispatch } from 'react-redux';
+import { updateProfile } from '../../redux/modules/profile';
 import { APIROUTES, apiBaseUrl } from '../../data/consts';
 
 import styles from './UserLogin.module.scss';
@@ -14,6 +16,8 @@ function UserLogin({ copy }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [cookies, setCookie] = useCookies(['token']);
+
+  const dispatch = useDispatch();
 
   const handleEmailChange = e => {
     setEmail(e.currentTarget.value);
@@ -36,10 +40,24 @@ function UserLogin({ copy }) {
       .then(function(response) {
         const token = response.data.token;
         setCookie('token', `Token ${token}`, { path: '/' });
-        Router.push('/planner');
+        axios({
+          method: 'get',
+          headers: { authorization: cookies.token },
+          url: APIROUTES.PROFILE,
+          baseURL: apiBaseUrl
+        })
+          .then(async response => {
+            const data = response.data;
+            await dispatch(updateProfile(data[0]));
+            Router.push('/planner');
+          })
+          .catch(function(error) {
+            window.alert('Server error, please try again');
+            console.log(error);
+          });
       })
       .catch(function(error) {
-        window.alert('Server error, please try again');
+        window.alert('Login error, please try again');
         console.log(error);
       });
   };
