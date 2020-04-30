@@ -2,4 +2,13 @@
 
 .coursePlanner {
   @include position-100(relative);
+
+  .boardContainer {
+    display: flex;
+    justify-content: flex-start;
+    height: 50%;
+    width: 100%;
+    margin-top: px(20);
+    overflow-x: scroll;
+  }
 }
