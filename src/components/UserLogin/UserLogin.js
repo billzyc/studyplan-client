@@ -49,7 +49,7 @@ function UserLogin({ copy }) {
           .then(async response => {
             const data = response.data;
             await dispatch(updateProfile(data[0]));
-            Router.push('/planner');
+            Router.push('/courses');
           })
           .catch(function(error) {
             window.alert('Server error, please try again');

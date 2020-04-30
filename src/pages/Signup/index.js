@@ -7,11 +7,11 @@ import dynamic from 'next/dynamic';
 
 import { withRedux } from '../../redux/withRedux';
 
-import styles from './planner.module.scss';
+import styles from './SignUp.module.scss';
 
-function Planner({ copy }) {
-  const CoursePlanner = dynamic(
-    () => import(/* webpackChunkName: "LoginModal" */ '../../components/CoursePlanner/CoursePlanner'),
+function SignUp({ copy }) {
+  const UserRegister = dynamic(
+    () => import(/* webpackChunkName: "LoginModal" */ '../../components/UserRegister/UserRegister'),
     {
       ssr: false
     }
@@ -20,20 +20,21 @@ function Planner({ copy }) {
   const Navbar = dynamic(() => import(/* webpackChunkName: "LoginModal" */ '../../components/Navbar/Navbar'), {
     ssr: false
   });
+
   return (
     <>
       <Head>
-        <title>Course Planner</title>
+        <title>Home | Jam3 generator</title>
       </Head>
-      <section className={classnames(styles.planner)}>
+      <section className={classnames(styles.login)}>
         <Navbar />
-        <CoursePlanner />
+        <UserRegister />
       </section>
     </>
   );
 }
 
-Planner.propTypes = checkProps({
+SignUp.propTypes = checkProps({
   copy: PropTypes.object
 });
 
@@ -47,4 +48,4 @@ Planner.propTypes = checkProps({
 //   };
 // }
 
-export default withRedux(Planner);
+export default withRedux(SignUp);

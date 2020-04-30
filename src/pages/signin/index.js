@@ -7,9 +7,9 @@ import dynamic from 'next/dynamic';
 
 import { withRedux } from '../../redux/withRedux';
 
-import styles from './login.module.scss';
+import styles from './SignIn.module.scss';
 
-function Login({ copy }) {
+function SignIn({ copy }) {
   const UserLogin = dynamic(() => import(/* webpackChunkName: "LoginModal" */ '../../components/UserLogin/UserLogin'), {
     ssr: false
   });
@@ -31,7 +31,7 @@ function Login({ copy }) {
   );
 }
 
-Login.propTypes = checkProps({
+SignIn.propTypes = checkProps({
   copy: PropTypes.object
 });
 
@@ -45,4 +45,4 @@ Login.propTypes = checkProps({
 //   };
 // }
 
-export default withRedux(Login);
+export default withRedux(SignIn);

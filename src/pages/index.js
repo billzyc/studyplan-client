@@ -37,7 +37,7 @@ function Landing() {
       </Head>
       <p>hello! This is work in progress</p>
       <div className={styles.links}>
-        <Link href="/login">
+        <Link href="/signin">
           <a>Login Page</a>
         </Link>
       </div>

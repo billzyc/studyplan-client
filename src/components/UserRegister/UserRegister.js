@@ -40,7 +40,7 @@ function UserRegister({ copy }) {
       baseURL: apiBaseUrl
     })
       .then(function(response) {
-        Router.push('/login');
+        Router.push('/signin');
       })
       .catch(function(error) {
         window.alert('Registration error, please try again');
