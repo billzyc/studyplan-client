@@ -8,15 +8,20 @@ import axios from 'axios';
 
 import { APIROUTES, apiBaseUrl } from '../../data/consts';
 
-import styles from './UserLogin.module.scss';
+import styles from './UserRegister.module.scss';
 
-function UserLogin({ copy }) {
+function UserRegister({ copy }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [cookies, setCookie] = useCookies(['token']);
 
   const handleEmailChange = e => {
     setEmail(e.currentTarget.value);
+  };
+
+  const handleNameChange = e => {
+    setName(e.currentTarget.value);
   };
 
   const handlePasswordChange = e => {
@@ -27,32 +32,43 @@ function UserLogin({ copy }) {
     axios({
       method: 'post',
       data: {
-        username: email,
+        email: email,
+        name: name,
         password: password
       },
-      url: APIROUTES.LOGIN,
+      url: APIROUTES.PROFILE,
       baseURL: apiBaseUrl
     })
       .then(function(response) {
-        const token = response.data.token;
-        setCookie('token', `Token ${token}`, { path: '/' });
-        Router.push('/planner');
+        Router.push('/login');
       })
       .catch(function(error) {
-        window.alert('Server error, please try again');
+        window.alert('Registration error, please try again');
         console.log(error);
       });
   };
 
   return (
-    <section className={classnames(styles.userLogin)}>
-      <h2>Sign in</h2>
+    <section className={classnames(styles.userRegister)}>
+      <h2>Register</h2>
+
+      <input
+        type="text"
+        id="name"
+        onChange={e => {
+          handleNameChange(e);
+        }}
+        placeholder="enter name"
+        value={name}
+      />
       <input
         type="email"
         id="email"
+        required
         onChange={e => {
           handleEmailChange(e);
         }}
+        className={styles.emailInput}
         placeholder="enter email"
         value={email}
       />
@@ -64,15 +80,13 @@ function UserLogin({ copy }) {
         placeholder="enter password"
         value={password}
       />
-      <button onClick={onLoginSubmit} className={styles.submit}>
-        Submit
-      </button>
+      <input type="submit" onClick={onLoginSubmit} className={styles.submit} value="Submit" />
     </section>
   );
 }
 
-UserLogin.propTypes = checkProps({
+UserRegister.propTypes = checkProps({
   copy: PropTypes.object
 });
 
-export default UserLogin;
+export default UserRegister;

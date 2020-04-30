@@ -7,12 +7,15 @@ import dynamic from 'next/dynamic';
 
 import { withRedux } from '../../redux/withRedux';
 
-import styles from './Login.module.scss';
+import styles from './Register.module.scss';
 
-function Login({ copy }) {
-  const UserLogin = dynamic(() => import(/* webpackChunkName: "LoginModal" */ '../../components/UserLogin/UserLogin'), {
-    ssr: false
-  });
+function Register({ copy }) {
+  const UserRegister = dynamic(
+    () => import(/* webpackChunkName: "LoginModal" */ '../../components/UserRegister/UserRegister'),
+    {
+      ssr: false
+    }
+  );
 
   const Navbar = dynamic(() => import(/* webpackChunkName: "LoginModal" */ '../../components/Navbar/Navbar'), {
     ssr: false
@@ -25,13 +28,13 @@ function Login({ copy }) {
       </Head>
       <section className={classnames(styles.login)}>
         <Navbar />
-        <UserLogin />
+        <UserRegister />
       </section>
     </>
   );
 }
 
-Login.propTypes = checkProps({
+Register.propTypes = checkProps({
   copy: PropTypes.object
 });
 
@@ -45,4 +48,4 @@ Login.propTypes = checkProps({
 //   };
 // }
 
-export default withRedux(Login);
+export default withRedux(Register);
