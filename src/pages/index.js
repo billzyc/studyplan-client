@@ -36,16 +36,13 @@ function Landing() {
         <title>Course Planner</title>
       </Head>
       <p>hello! This is work in progress</p>
-      <div className={styles.links}>
-        <Link href="/signin">
-          <a>Login Page</a>
-        </Link>
-      </div>
-      <div className={styles.links}>
-        <Link href="/register">
-          <a>Register</a>
-        </Link>
-      </div>
+      <Link href="/signin">
+        <a className={styles.links}>Login Page</a>
+      </Link>
+
+      <Link href="/register">
+        <a className={styles.links}>Register</a>
+      </Link>
     </section>
   );
 }
