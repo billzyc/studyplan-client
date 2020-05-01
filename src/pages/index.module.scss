@@ -1,8 +1,10 @@
 @import '../styles/shared.scss';
 
 .Landing {
+  @include position-100(fixed);
   @include flex-center;
   flex-direction: column;
+  background-color: $beige;
 
   .links {
     @include flex-center;

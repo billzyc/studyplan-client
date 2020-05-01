@@ -2,4 +2,54 @@
 
 .coursePlanner {
   @include position-100(relative);
+  display: flex;
+  flex-direction: column;
+
+  .boardContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+    margin-top: px(20);
+    overflow-x: scroll;
+  }
+
+  .courseSelection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    flex-grow: 1;
+
+    .addCourses {
+      $inputWidth: px(300);
+      @include flex-center;
+      flex-direction: column;
+
+      input {
+        width: $inputWidth;
+        height: px(50);
+        margin-bottom: px(15);
+        text-indent: px(10);
+        border: solid 1px;
+        border-color: $tan;
+        border-radius: px(5);
+        color: $grey;
+        background-color: transparent;
+      }
+
+      .submit {
+        width: $inputWidth;
+        height: px(50);
+        color: $beige;
+        background-color: $tan;
+        border-radius: px(5);
+      }
+    }
+
+    .unassignedCourseList {
+      @include flex-center;
+      height: 100%;
+    }
+  }
 }
