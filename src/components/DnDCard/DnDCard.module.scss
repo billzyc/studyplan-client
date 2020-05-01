@@ -1,0 +1,11 @@
+@import '../../styles/shared.scss';
+
+.card {
+  width: 100%;
+  height: px(50);
+  margin-bottom: px(15);
+  padding: px(15);
+  border-radius: px(5);
+  background-color: $pink;
+  cursor: pointer;
+}

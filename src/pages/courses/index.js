@@ -25,7 +25,7 @@ function Courses({ copy }) {
       <Head>
         <title>Course Planner</title>
       </Head>
-      <section className={classnames(styles.planner)}>
+      <section className={classnames(styles.courses)}>
         <Navbar />
         <CoursePlanner />
       </section>
