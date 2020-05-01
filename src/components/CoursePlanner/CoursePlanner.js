@@ -87,17 +87,9 @@ function CoursePlanner({}) {
     <section className={classnames(styles.coursePlanner)}>
       {true && (
         <div className={styles.boardContainer}>
-          <DnDBoard id="board1" styleClass={DnDBoardType.ASSIGNED}>
-            <DnDCard id="card1">
-              <p>card 1</p>
-            </DnDCard>
-          </DnDBoard>
+          <DnDBoard id="board1" styleClass={DnDBoardType.ASSIGNED}></DnDBoard>
 
-          <DnDBoard id="board2" styleClass={DnDBoardType.ASSIGNED}>
-            <DnDCard id="card2">
-              <p>card 2</p>
-            </DnDCard>
-          </DnDBoard>
+          <DnDBoard id="board2" styleClass={DnDBoardType.ASSIGNED}></DnDBoard>
         </div>
       )}
       <div className={styles.courseSelection}>
