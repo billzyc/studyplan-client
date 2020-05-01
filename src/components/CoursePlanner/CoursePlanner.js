@@ -64,25 +64,18 @@ function CoursePlanner({}) {
   };
 
   const renderUnassigned = () => {
-    console.log(courseInfo, courseInfo.length > 0);
     if (courseInfo.length > 0) {
-      return (
-        <div className={styles.unassignedCourseList}>
-          <DnDBoard id="board3" styleClass={DnDBoardType.UNASSIGNED}>
-            {courseInfo.map(course => {
-              if (!course.year_placement && !course.semester_placement) {
-                return (
-                  <DnDCard id={course.id}>
-                    <p>
-                      {course.course_subject} {course.course_number}
-                    </p>
-                  </DnDCard>
-                );
-              }
-            })}
-          </DnDBoard>
-        </div>
-      );
+      return courseInfo.map(course => {
+        if (!course.year_placement && !course.semester_placement) {
+          return (
+            <DnDCard id={course.id}>
+              <p>
+                {course.course_subject} {course.course_number}
+              </p>
+            </DnDCard>
+          );
+        }
+      });
     }
   };
 
@@ -131,7 +124,11 @@ function CoursePlanner({}) {
             Submit
           </button>
         </div>
-        {renderUnassigned()}
+        <div className={styles.unassignedCourseList}>
+          <DnDBoard id="board3" styleClass={DnDBoardType.UNASSIGNED}>
+            {renderUnassigned()}
+          </DnDBoard>
+        </div>
       </div>
     </section>
   );
