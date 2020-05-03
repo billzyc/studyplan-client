@@ -44,11 +44,31 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
             dispatch(replaceSemester(data));
           })
           .catch(function(error) {
-            window.alert('Server 1 error, please try again');
+            console.log(error);
+            window.alert('Update board error, please try again');
           });
       })
       .catch(function(error) {
-        window.alert('Server error, please try again');
+        console.log(error);
+        window.alert('Delete board error, please try again');
+      });
+  };
+
+  const fetchCurrentSemesterCourses = () => {
+    axios({
+      method: 'get',
+      headers: { authorization: cookies.token },
+      url: APIROUTES.COURSEITEMS,
+      params: { semester_query: semesterId },
+      baseURL: apiBaseUrl
+    })
+      .then(response => {
+        const data = response.data;
+        setCurrentSemesterCourses(data);
+      })
+      .catch(function(error) {
+        console.log(error);
+        window.alert('Fetch course error, please try again');
       });
   };
 
@@ -67,10 +87,11 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
       baseURL: apiBaseUrl
     })
       .then(response => {
-        console.log(response);
+        fetchCurrentSemesterCourses();
       })
       .catch(function(error) {
-        window.alert('Server error, please try again');
+        console.log(error);
+        window.alert('Update card error, please try again');
       });
   };
 
@@ -88,7 +109,6 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
   };
 
   const renderCourseCards = () => {
-    console.log(semesterId, currentSemesterCourses);
     if (currentSemesterCourses.length > 0) {
       return currentSemesterCourses.map(course => {
         return (
@@ -103,21 +123,8 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
   };
 
   useEffect(() => {
-    axios({
-      method: 'get',
-      headers: { authorization: cookies.token },
-      url: APIROUTES.COURSEITEMS,
-      params: { semester_query: semesterId },
-      baseURL: apiBaseUrl
-    })
-      .then(response => {
-        const data = response.data;
-        setCurrentSemesterCourses(data);
-      })
-      .catch(function(error) {
-        console.log(error);
-        window.alert('Server 4 error, please try again');
-      });
+    fetchCurrentSemesterCourses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

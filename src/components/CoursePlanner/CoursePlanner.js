@@ -38,11 +38,11 @@ function CoursePlanner({}) {
       })
       .catch(function(error) {
         console.log(error);
-        window.alert('Server 1 error, please try again');
+        window.alert('Fetch semester information error, please try again');
       });
   }, [cookies.token, dispatch]);
 
-  const fetchSavedCourseInfo = useCallback(() => {
+  const fetchAllCourses = useCallback(() => {
     axios({
       method: 'get',
       headers: { authorization: cookies.token },
@@ -50,13 +50,12 @@ function CoursePlanner({}) {
       baseURL: apiBaseUrl
     })
       .then(response => {
-        console.log(response);
         const data = response.data;
         dispatch(replaceCourse(data));
       })
       .catch(function(error) {
-        window.alert('Server 2 error, please try again');
         console.log(error);
+        window.alert('Fetch all course information error, please try again');
       });
   }, [cookies.token, dispatch]);
 
@@ -80,16 +79,15 @@ function CoursePlanner({}) {
       baseURL: apiBaseUrl
     })
       .then(function(response) {
-        fetchSavedCourseInfo();
+        fetchAllCourses();
       })
       .catch(function(error) {
-        window.alert('Login error, please try again');
         console.log(error);
+        window.alert('Login error, please try again');
       });
   };
 
   const renderDnDBoard = () => {
-    console.log(semesterInfo);
     if (semesterInfo.length > 0) {
       return semesterInfo.map(semester_group => {
         return (
@@ -105,7 +103,7 @@ function CoursePlanner({}) {
   };
   useEffect(() => {
     fetchSavedSemesters();
-    fetchSavedCourseInfo();
+    fetchAllCourses();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
