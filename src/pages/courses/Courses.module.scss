@@ -3,4 +3,9 @@
 .courses {
   @include position-100(fixed);
   background-color: $beige;
+
+  .coursePlannerContainer {
+    position: relative;
+    height: calc(100% - #{$navbar-height-mobile});
+  }
 }

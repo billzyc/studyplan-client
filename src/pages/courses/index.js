@@ -27,7 +27,9 @@ function Courses({ copy }) {
       </Head>
       <section className={classnames(styles.courses)}>
         <Navbar />
-        <CoursePlanner />
+        <div className={styles.coursePlannerContainer}>
+          <CoursePlanner />
+        </div>
       </section>
     </>
   );
