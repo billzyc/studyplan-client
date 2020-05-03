@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import classnames from 'classnames';
@@ -11,12 +11,16 @@ import styles from './DnDBoard.module.scss';
 import { APIROUTES, apiBaseUrl } from '../../data/consts';
 import { replaceSemester } from '../../redux/modules/semester';
 
+import DnDCard from '../DnDCard/DnDCard';
+
 export const DnDBoardType = {
   UNASSIGNED: 'unassigned',
   ASSIGNED: 'assigned'
 };
 
 const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) => {
+  const semesterId = id;
+  const [currentSemesterCourses, setCurrentSemesterCourses] = useState([]);
   const [cookies] = useCookies(['token']);
   const dispatch = useDispatch();
   const { courseInfo } = useSelector(state => state);
@@ -49,13 +53,16 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
   };
 
   const updateCardPlacement = cardId => {
-    const semesterId = id;
     const currentCourse = courseInfo.find(course => course.id === parseInt(cardId));
     const { course_number, course_subject } = currentCourse;
     axios({
       method: 'put',
       headers: { authorization: cookies.token },
-      data: { course_subject: course_subject, course_number: course_number, semester_placement: semesterId },
+      data: {
+        course_subject: course_subject,
+        course_number: course_number,
+        semester_placement: semesterId === 'unassigned' ? null : semesterId
+      },
       url: `${APIROUTES.COURSEITEMS}${cardId}/`,
       baseURL: apiBaseUrl
     })
@@ -80,10 +87,43 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
     e.preventDefault();
   };
 
+  const renderCourseCards = () => {
+    console.log(semesterId, currentSemesterCourses);
+    if (currentSemesterCourses.length > 0) {
+      return currentSemesterCourses.map(course => {
+        return (
+          <DnDCard id={course.id} key={course.id}>
+            <p>
+              {course.course_subject} {course.course_number}
+            </p>
+          </DnDCard>
+        );
+      });
+    }
+  };
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      headers: { authorization: cookies.token },
+      url: APIROUTES.COURSEITEMS,
+      params: { semester_query: semesterId },
+      baseURL: apiBaseUrl
+    })
+      .then(response => {
+        const data = response.data;
+        setCurrentSemesterCourses(data);
+      })
+      .catch(function(error) {
+        console.log(error);
+        window.alert('Server 4 error, please try again');
+      });
+  }, []);
+
   return (
     <div id={id} onDrop={drop} onDragOver={dragOver} className={classnames(styles[styleClass])}>
       {semester && <p>{semester}</p>}
-      {children}
+      {renderCourseCards()}
       <button onClick={deleteBoard} className={styles.delete}>
         delete
       </button>

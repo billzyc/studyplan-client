@@ -50,6 +50,7 @@ function CoursePlanner({}) {
       baseURL: apiBaseUrl
     })
       .then(response => {
+        console.log(response);
         const data = response.data;
         dispatch(replaceCourse(data));
       })
@@ -85,20 +86,6 @@ function CoursePlanner({}) {
         window.alert('Login error, please try again');
         console.log(error);
       });
-  };
-
-  const renderUnassigned = () => {
-    if (courseInfo.length > 0) {
-      return courseInfo.map(course => {
-        return (
-          <DnDCard id={course.id} key={course.id}>
-            <p>
-              {course.course_subject} {course.course_number}
-            </p>
-          </DnDCard>
-        );
-      });
-    }
   };
 
   const renderDnDBoard = () => {
@@ -150,9 +137,7 @@ function CoursePlanner({}) {
           </button>
         </div>
         <div className={styles.unassignedCourseList}>
-          <DnDBoard id="board3" styleClass={DnDBoardType.UNASSIGNED}>
-            {renderUnassigned()}
-          </DnDBoard>
+          <DnDBoard id="unassigned" styleClass={DnDBoardType.UNASSIGNED} />
         </div>
       </div>
     </section>
