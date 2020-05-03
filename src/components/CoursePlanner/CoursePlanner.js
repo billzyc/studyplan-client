@@ -4,18 +4,43 @@ import checkProps from '@jam3/react-check-extra-props';
 import classnames from 'classnames';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './CoursePlanner.module.scss';
 
 import DnDBoard, { DnDBoardType } from '../DnDBoard/DnDBoard';
 import DnDCard from '../DnDCard/DnDCard';
+import NewSemesterModal from '../NewSemesterModal/NewSemesterModal';
 import { APIROUTES, apiBaseUrl } from '../../data/consts';
+import { replaceSemester } from '../../redux/modules/semester';
+import { replaceCourse } from '../../redux/modules/course';
 
 function CoursePlanner({}) {
-  const [courseInfo, setCourseInfo] = useState([]);
+  const [isSemesterLoaded, setIsSemesterLoaded] = useState(false);
   const [newCourseSubject, setNewCourseSubject] = useState('');
   const [newCourseNumber, setNewCourseNumber] = useState('');
   const [cookies] = useCookies(['token']);
+
+  const dispatch = useDispatch();
+  const { semesterInfo, courseInfo } = useSelector(state => state);
+
+  const fetchSavedSemesters = useCallback(() => {
+    axios({
+      method: 'get',
+      headers: { authorization: cookies.token },
+      url: APIROUTES.SEMESTERS,
+      baseURL: apiBaseUrl
+    })
+      .then(response => {
+        const data = response.data;
+        dispatch(replaceSemester(data));
+        setIsSemesterLoaded(true);
+      })
+      .catch(function(error) {
+        console.log(error);
+        window.alert('Server 1 error, please try again');
+      });
+  }, [cookies.token, dispatch]);
 
   const fetchSavedCourseInfo = useCallback(() => {
     axios({
@@ -26,14 +51,13 @@ function CoursePlanner({}) {
     })
       .then(response => {
         const data = response.data;
-        console.log(data);
-        setCourseInfo(data);
+        dispatch(replaceCourse(data));
       })
       .catch(function(error) {
-        window.alert('Server error, please try again');
+        window.alert('Server 2 error, please try again');
         console.log(error);
       });
-  }, [cookies.token]);
+  }, [cookies.token, dispatch]);
 
   const handleNewCourseSubject = e => {
     setNewCourseSubject(e.currentTarget.value);
@@ -66,32 +90,41 @@ function CoursePlanner({}) {
   const renderUnassigned = () => {
     if (courseInfo.length > 0) {
       return courseInfo.map(course => {
-        if (!course.year_placement && !course.semester_placement) {
-          return (
-            <DnDCard id={course.id}>
-              <p>
-                {course.course_subject} {course.course_number}
-              </p>
-            </DnDCard>
-          );
-        }
+        return (
+          <DnDCard id={course.id} key={course.id}>
+            <p>
+              {course.course_subject} {course.course_number}
+            </p>
+          </DnDCard>
+        );
       });
     }
   };
 
+  const renderDnDBoard = () => {
+    console.log(semesterInfo);
+    if (semesterInfo.length > 0) {
+      return semesterInfo.map(semester_group => {
+        return (
+          <DnDBoard
+            id={semester_group.id}
+            key={semester_group.id}
+            semester={semester_group.semester}
+            styleClass={DnDBoardType.ASSIGNED}
+          ></DnDBoard>
+        );
+      });
+    }
+  };
   useEffect(() => {
+    fetchSavedSemesters();
     fetchSavedCourseInfo();
-  }, [fetchSavedCourseInfo]);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <section className={classnames(styles.coursePlanner)}>
-      {true && (
-        <div className={styles.boardContainer}>
-          <DnDBoard id="board1" styleClass={DnDBoardType.ASSIGNED}></DnDBoard>
-
-          <DnDBoard id="board2" styleClass={DnDBoardType.ASSIGNED}></DnDBoard>
-        </div>
-      )}
+      {isSemesterLoaded && Object.keys(semesterInfo).length === 0 ? <NewSemesterModal /> : null}
+      <div className={styles.boardContainer}>{renderDnDBoard()}</div>
       <div className={styles.courseSelection}>
         <div className={styles.addCourses}>
           <input

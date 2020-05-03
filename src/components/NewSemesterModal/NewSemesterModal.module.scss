@@ -1,0 +1,49 @@
+@import '../../styles/shared.scss';
+
+.newSemesterModal {
+  $inputWidth: px(200);
+  @include position-100(fixed);
+  @include flex-center;
+  background-color: rgba($black, 0.5);
+  z-index: 1;
+
+  h4 {
+    width: $inputWidth;
+    color: $grey;
+    margin-bottom: px(15);
+  }
+
+  .modalContainer {
+    @include flex-center;
+    flex-direction: column;
+    width: px(300);
+    height: px(500);
+    border-radius: px(5);
+    background-color: $white;
+
+    input,
+    select {
+      width: $inputWidth;
+      height: px(50);
+      margin-bottom: px(15);
+      text-indent: px(10);
+      border: solid 1px;
+      border-color: $tan;
+      border-radius: px(5);
+      color: $grey;
+      background-color: transparent;
+    }
+
+    .submit {
+      width: $inputWidth;
+      height: px(50);
+      color: $beige;
+      background-color: $tan;
+      border-radius: px(5);
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}

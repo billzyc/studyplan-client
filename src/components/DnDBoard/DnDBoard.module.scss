@@ -7,6 +7,12 @@
   padding: px(10);
   background-color: $tan;
   overflow-y: scroll;
+
+  .delete {
+    position: absolute;
+    bottom: px(50);
+    background-color: $red;
+  }
 }
 
 .assigned {
@@ -24,4 +30,8 @@
   grid-template-rows: px(50);
   @include box(80%);
   margin-bottom: px(20);
+
+  .delete {
+    display: none;
+  }
 }

@@ -3,10 +3,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import appReducers from './modules/app';
 import profileReducers from './modules/profile';
+import semesterReducer from './modules/semester';
+import courseReducer from './modules/course';
 
 const reducers = combineReducers({
   app: appReducers,
-  profile: profileReducers
+  profile: profileReducers,
+  semesterInfo: semesterReducer,
+  courseInfo: courseReducer
 });
 
 export const initializeStore = preloadedState => {
