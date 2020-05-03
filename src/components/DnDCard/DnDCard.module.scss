@@ -1,6 +1,8 @@
 @import '../../styles/shared.scss';
 
 .card {
+  position: relative;
+  @include flex-center;
   width: 100%;
   height: px(50);
   margin-bottom: px(15);
@@ -8,4 +10,13 @@
   border-radius: px(5);
   background-color: $pink;
   cursor: pointer;
+
+  .delete {
+    position: absolute;
+    @include flex-center;
+    width: px(20);
+    height: px(30);
+    background-color: $tan;
+    right: px(15);
+  }
 }

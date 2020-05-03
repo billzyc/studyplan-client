@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import classnames from 'classnames';
@@ -16,6 +16,7 @@ import { replaceSemester } from '../../redux/modules/semester';
 import { replaceCourse } from '../../redux/modules/course';
 
 function CoursePlanner({}) {
+  const unassignedBoardRef = useRef();
   const [isSemesterLoaded, setIsSemesterLoaded] = useState(false);
   const [newCourseSubject, setNewCourseSubject] = useState('');
   const [newCourseNumber, setNewCourseNumber] = useState('');
@@ -80,6 +81,9 @@ function CoursePlanner({}) {
     })
       .then(function(response) {
         fetchAllCourses();
+        unassignedBoardRef.current.updateCourses();
+        setNewCourseSubject('');
+        setNewCourseNumber('');
       })
       .catch(function(error) {
         console.log(error);
@@ -135,7 +139,7 @@ function CoursePlanner({}) {
           </button>
         </div>
         <div className={styles.unassignedCourseList}>
-          <DnDBoard id="unassigned" styleClass={DnDBoardType.UNASSIGNED} />
+          <DnDBoard id={DnDBoardType.UNASSIGNED} styleClass={DnDBoardType.UNASSIGNED} ref={unassignedBoardRef} />
         </div>
       </div>
     </section>

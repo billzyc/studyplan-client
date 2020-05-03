@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import classnames from 'classnames';
@@ -18,7 +18,7 @@ export const DnDBoardType = {
   ASSIGNED: 'assigned'
 };
 
-const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) => {
+const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, ref) => {
   const semesterId = id;
   const [currentSemesterCourses, setCurrentSemesterCourses] = useState([]);
   const [cookies] = useCookies(['token']);
@@ -72,7 +72,7 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
       });
   };
 
-  const updateCardPlacement = cardId => {
+  const updateCardPlacement = (cardId, card) => {
     const currentCourse = courseInfo.find(course => course.id === parseInt(cardId));
     const { course_number, course_subject } = currentCourse;
     axios({
@@ -86,9 +86,7 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
       url: `${APIROUTES.COURSEITEMS}${cardId}/`,
       baseURL: apiBaseUrl
     })
-      .then(response => {
-        fetchCurrentSemesterCourses();
-      })
+      .then(response => {})
       .catch(function(error) {
         console.log(error);
         window.alert('Update card error, please try again');
@@ -112,7 +110,7 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
     if (currentSemesterCourses.length > 0) {
       return currentSemesterCourses.map(course => {
         return (
-          <DnDCard id={course.id} key={course.id}>
+          <DnDCard id={course.id} key={course.id} updateBoard={fetchCurrentSemesterCourses}>
             <p>
               {course.course_subject} {course.course_number}
             </p>
@@ -121,6 +119,10 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
       });
     }
   };
+
+  useImperativeHandle(ref, () => ({
+    updateCourses: fetchCurrentSemesterCourses
+  }));
 
   useEffect(() => {
     fetchCurrentSemesterCourses();
@@ -131,12 +133,14 @@ const DnDBoard = ({ id, children, semester, styleClass = DnDBoard.ASSIGNED }) =>
     <div id={id} onDrop={drop} onDragOver={dragOver} className={classnames(styles[styleClass])}>
       {semester && <p>{semester}</p>}
       {renderCourseCards()}
-      <button onClick={deleteBoard} className={styles.delete}>
-        delete
-      </button>
+      {semesterId === DnDBoardType.UNASSIGNED ? null : (
+        <button onClick={deleteBoard} className={styles.delete}>
+          delete
+        </button>
+      )}
     </div>
   );
-};
+});
 
 DnDBoard.propTypes = checkProps({});
 
