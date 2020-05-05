@@ -14,9 +14,12 @@
   .delete {
     position: absolute;
     @include flex-center;
-    width: px(20);
+    width: px(15);
     height: px(30);
-    background-color: $tan;
     right: px(15);
+
+    svg {
+      @include box(100%);
+    }
   }
 }

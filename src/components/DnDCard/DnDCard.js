@@ -9,6 +9,7 @@ import styles from './DnDCard.module.scss';
 
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import copy from '../../data/copy.json';
+import { ReactComponent as XSvg } from '../../assets/svgs/x.svg';
 
 const DnDCard = ({ id, children, updateBoard }) => {
   const [cookies] = useCookies(['token']);
@@ -40,7 +41,7 @@ const DnDCard = ({ id, children, updateBoard }) => {
     <div id={id} onDragStart={dragStart} onDragOver={dragOver} draggable="true" className={classnames(styles.card)}>
       {children}
       <button className={styles.delete} onClick={deleteCourse}>
-        x
+        <XSvg />
       </button>
     </div>
   );
