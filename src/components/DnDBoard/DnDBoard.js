@@ -144,7 +144,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
 
 DnDBoard.propTypes = checkProps({
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  semester: PropTypes.string.isRequired,
+  semester: PropTypes.string,
   styleClass: PropTypes.string
 });
 
