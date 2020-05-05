@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './DnDBoard.module.scss';
 
-import { APIROUTES, apiBaseUrl } from '../../data/consts';
+import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import { replaceSemester } from '../../redux/modules/semester';
 
 import DnDCard from '../DnDCard/DnDCard';
@@ -29,14 +29,14 @@ const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, r
     axios({
       method: 'delete',
       headers: { authorization: cookies.token },
-      url: `${APIROUTES.SEMESTERS}${id}`,
+      url: `${API_ROUTES.SEMESTERS}${id}`,
       baseURL: apiBaseUrl
     })
       .then(response => {
         axios({
           method: 'get',
           headers: { authorization: cookies.token },
-          url: APIROUTES.SEMESTERS,
+          url: API_ROUTES.SEMESTERS,
           baseURL: apiBaseUrl
         })
           .then(response => {
@@ -58,7 +58,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, r
     axios({
       method: 'get',
       headers: { authorization: cookies.token },
-      url: APIROUTES.COURSEITEMS,
+      url: API_ROUTES.COURSEITEMS,
       params: { semester_query: semesterId },
       baseURL: apiBaseUrl
     })
@@ -83,7 +83,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, r
         course_number: course_number,
         semester_placement: semesterId === 'unassigned' ? null : semesterId
       },
-      url: `${APIROUTES.COURSEITEMS}${cardId}/`,
+      url: `${API_ROUTES.COURSEITEMS}${cardId}/`,
       baseURL: apiBaseUrl
     })
       .then(response => {})

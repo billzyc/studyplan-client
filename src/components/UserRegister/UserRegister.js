@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
-import { APIROUTES, apiBaseUrl } from '../../data/consts';
+import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 
 import styles from './UserRegister.module.scss';
 
@@ -36,7 +36,7 @@ function UserRegister({ copy }) {
         name: name,
         password: password
       },
-      url: APIROUTES.PROFILE,
+      url: API_ROUTES.PROFILE,
       baseURL: apiBaseUrl
     })
       .then(function(response) {

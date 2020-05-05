@@ -8,13 +8,13 @@ import { useDispatch } from 'react-redux';
 
 import styles from './NewSemesterModal.module.scss';
 
-import { TERMKEYS } from '../../data/consts';
-import { APIROUTES, apiBaseUrl } from '../../data/consts';
+import { TERM_KEYS } from '../../data/consts';
+import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import { replaceSemester } from '../../redux/modules/semester';
 
 function NewSemesterModal({}) {
   const [semesterYear, setSemesterYear] = useState('');
-  const [semesterTerm, setSemesterTerm] = useState(TERMKEYS.FALL);
+  const [semesterTerm, setSemesterTerm] = useState(TERM_KEYS.FALL);
   const [cookies] = useCookies(['token']);
 
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function NewSemesterModal({}) {
       data: {
         semester: `${semesterYear}-${semesterTerm}`
       },
-      url: APIROUTES.SEMESTERS,
+      url: API_ROUTES.SEMESTERS,
       baseURL: apiBaseUrl
     })
       .then(response => {
@@ -57,9 +57,9 @@ function NewSemesterModal({}) {
           value={semesterYear}
         />
         <select id="semesters" onChange={e => setSemesterTerm(e.target.value)}>
-          <option value={TERMKEYS.FALL}>Fall</option>
-          <option value={TERMKEYS.WINTER}>Winter</option>
-          <option value={TERMKEYS.SPRING}>Spring</option>
+          <option value={TERM_KEYS.FALL}>Fall</option>
+          <option value={TERM_KEYS.WINTER}>Winter</option>
+          <option value={TERM_KEYS.SPRING}>Spring</option>
         </select>
         <button onClick={() => handleNewCourseSubmit()} className={styles.submit}>
           Submit

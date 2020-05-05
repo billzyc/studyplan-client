@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import { useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/modules/profile';
-import { APIROUTES, apiBaseUrl } from '../../data/consts';
+import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 
 import styles from './UserLogin.module.scss';
 
@@ -34,7 +34,7 @@ function UserLogin({ copy }) {
         username: email,
         password: password
       },
-      url: APIROUTES.LOGIN,
+      url: API_ROUTES.LOGIN,
       baseURL: apiBaseUrl
     })
       .then(function(response) {
@@ -43,7 +43,7 @@ function UserLogin({ copy }) {
         axios({
           method: 'get',
           headers: { authorization: cookies.token },
-          url: APIROUTES.PROFILE,
+          url: API_ROUTES.PROFILE,
           baseURL: apiBaseUrl
         })
           .then(async response => {

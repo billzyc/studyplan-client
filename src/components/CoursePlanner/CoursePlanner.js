@@ -9,33 +9,38 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './CoursePlanner.module.scss';
 
 import DnDBoard, { DnDBoardType } from '../DnDBoard/DnDBoard';
-import DnDCard from '../DnDCard/DnDCard';
-import NewSemesterModal from '../NewSemesterModal/NewSemesterModal';
-import { APIROUTES, apiBaseUrl } from '../../data/consts';
+import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import { replaceSemester } from '../../redux/modules/semester';
 import { replaceCourse } from '../../redux/modules/course';
+import { openModal, closeModal } from '../../redux/modules/modal';
+import { MODAL_KEYS } from '../../data/consts';
 
 function CoursePlanner({}) {
   const unassignedBoardRef = useRef();
-  const [isSemesterLoaded, setIsSemesterLoaded] = useState(false);
   const [newCourseSubject, setNewCourseSubject] = useState('');
   const [newCourseNumber, setNewCourseNumber] = useState('');
   const [cookies] = useCookies(['token']);
-
   const dispatch = useDispatch();
   const { semesterInfo, courseInfo } = useSelector(state => state);
+
+  const handleModalPortal = useCallback(() => {
+    if (Object.keys(semesterInfo).length === 0) {
+      dispatch(openModal(MODAL_KEYS.NEW_SEMESTER));
+    } else {
+      dispatch(closeModal());
+    }
+  }, [dispatch, semesterInfo]);
 
   const fetchSavedSemesters = useCallback(() => {
     axios({
       method: 'get',
       headers: { authorization: cookies.token },
-      url: APIROUTES.SEMESTERS,
+      url: API_ROUTES.SEMESTERS,
       baseURL: apiBaseUrl
     })
       .then(response => {
         const data = response.data;
         dispatch(replaceSemester(data));
-        setIsSemesterLoaded(true);
       })
       .catch(function(error) {
         console.log(error);
@@ -47,7 +52,7 @@ function CoursePlanner({}) {
     axios({
       method: 'get',
       headers: { authorization: cookies.token },
-      url: APIROUTES.COURSEITEMS,
+      url: API_ROUTES.COURSEITEMS,
       baseURL: apiBaseUrl
     })
       .then(response => {
@@ -76,7 +81,7 @@ function CoursePlanner({}) {
         course_number: newCourseNumber
       },
       headers: { authorization: cookies.token },
-      url: APIROUTES.COURSEITEMS,
+      url: API_ROUTES.COURSEITEMS,
       baseURL: apiBaseUrl
     })
       .then(function(response) {
@@ -110,9 +115,13 @@ function CoursePlanner({}) {
     fetchAllCourses();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    handleModalPortal();
+  }, [handleModalPortal]);
+
   return (
     <section className={classnames(styles.coursePlanner)}>
-      {isSemesterLoaded && Object.keys(semesterInfo).length === 0 ? <NewSemesterModal /> : null}
       <div className={styles.boardContainer}>{renderDnDBoard()}</div>
       <div className={styles.courseSelection}>
         <div className={styles.addCourses}>

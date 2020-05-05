@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import styles from './DnDCard.module.scss';
 
-import { APIROUTES, apiBaseUrl } from '../../data/consts';
+import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 
 const DnDCard = ({ id, children, updateBoard }) => {
   const [cookies] = useCookies(['token']);
@@ -15,7 +15,7 @@ const DnDCard = ({ id, children, updateBoard }) => {
     axios({
       method: 'delete',
       headers: { authorization: cookies.token },
-      url: `${APIROUTES.COURSEITEMS}${id}`,
+      url: `${API_ROUTES.COURSEITEMS}${id}`,
       baseURL: apiBaseUrl
     })
       .then(response => {
