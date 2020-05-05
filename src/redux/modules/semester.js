@@ -6,6 +6,9 @@ export default function reducer(state = defaultState, action) {
     case 'replaceCurrentSemester':
       return action.semesterInfo;
 
+    case 'addSemester':
+      return [...state, action.semesterInfo];
+
     default:
       return state;
   }
@@ -15,6 +18,13 @@ export default function reducer(state = defaultState, action) {
 export function replaceSemester(semesterInfo) {
   return {
     type: 'replaceCurrentSemester',
+    semesterInfo: semesterInfo
+  };
+}
+
+export function addSemester(semesterInfo) {
+  return {
+    type: 'addSemester',
     semesterInfo: semesterInfo
   };
 }

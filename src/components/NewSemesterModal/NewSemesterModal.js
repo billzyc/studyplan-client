@@ -10,7 +10,7 @@ import styles from './NewSemesterModal.module.scss';
 
 import { TERM_KEYS } from '../../data/consts';
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
-import { replaceSemester } from '../../redux/modules/semester';
+import { addSemester } from '../../redux/modules/semester';
 
 function NewSemesterModal({}) {
   const [semesterYear, setSemesterYear] = useState('');
@@ -34,8 +34,8 @@ function NewSemesterModal({}) {
       baseURL: apiBaseUrl
     })
       .then(response => {
-        const data = [response.data];
-        dispatch(replaceSemester(data));
+        const data = response.data;
+        dispatch(addSemester(data));
       })
       .catch(function(error) {
         console.log(error);

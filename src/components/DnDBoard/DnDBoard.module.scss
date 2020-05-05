@@ -23,14 +23,12 @@
 }
 
 .unassigned {
+  @include box(100%);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: px(10);
   row-gap: px(10);
   grid-auto-rows: px(50);
-  @include box(80%);
-  margin-bottom: px(20);
-
   .delete {
     display: none;
   }

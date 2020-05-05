@@ -125,30 +125,44 @@ function CoursePlanner({}) {
       <div className={styles.boardContainer}>{renderDnDBoard()}</div>
       <div className={styles.courseSelection}>
         <div className={styles.addCourses}>
-          <input
-            type="text"
-            id="courseSubject"
-            onChange={e => {
-              handleNewCourseSubject(e);
-            }}
-            placeholder="enter course subject (e.g CS)"
-            value={newCourseSubject}
-          />
-          <input
-            type="text"
-            id="courseNumber"
-            onChange={e => {
-              handleNewCourseNumber(e);
-            }}
-            placeholder="enter course number (e.g 136)"
-            value={newCourseNumber}
-          />
-          <button onClick={onNewCourseSubmit} className={styles.submit}>
-            Submit
-          </button>
+          <div className={styles.buttonContainer}>
+            <button
+              onClick={() => {
+                dispatch(openModal(MODAL_KEYS.NEW_SEMESTER));
+              }}
+              className={styles.newSemester}
+            >
+              New Semester
+            </button>
+            <div>
+              <input
+                type="text"
+                id="courseSubject"
+                onChange={e => {
+                  handleNewCourseSubject(e);
+                }}
+                placeholder="enter course subject (e.g CS)"
+                value={newCourseSubject}
+              />
+              <input
+                type="text"
+                id="courseNumber"
+                onChange={e => {
+                  handleNewCourseNumber(e);
+                }}
+                placeholder="enter course number (e.g 136)"
+                value={newCourseNumber}
+              />
+              <button onClick={onNewCourseSubmit} className={styles.courseSubmit}>
+                Submit
+              </button>
+            </div>
+          </div>
         </div>
         <div className={styles.unassignedCourseList}>
-          <DnDBoard id={DnDBoardType.UNASSIGNED} styleClass={DnDBoardType.UNASSIGNED} ref={unassignedBoardRef} />
+          <div className={styles.boardContainer}>
+            <DnDBoard id={DnDBoardType.UNASSIGNED} styleClass={DnDBoardType.UNASSIGNED} ref={unassignedBoardRef} />
+          </div>
         </div>
       </div>
     </section>

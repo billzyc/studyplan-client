@@ -26,9 +26,7 @@ function ModalPortal() {
   return <section section={classnames(styles.modalPortal)}>{renderModal()}</section>;
 }
 
-ModalPortal.propTypes = checkProps({
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
-});
+ModalPortal.propTypes = checkProps({});
 
 ModalPortal.defaultProps = {};
 
