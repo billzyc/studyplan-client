@@ -13,7 +13,7 @@ import copy from '../../data/copy.json';
 
 import styles from './UserLogin.module.scss';
 
-function UserLogin({ copy }) {
+function UserLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [cookies, setCookie] = useCookies(['token']);
@@ -90,8 +90,6 @@ function UserLogin({ copy }) {
   );
 }
 
-UserLogin.propTypes = checkProps({
-  copy: PropTypes.object
-});
+UserLogin.propTypes = checkProps({});
 
 export default UserLogin;

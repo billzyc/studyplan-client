@@ -46,7 +46,11 @@ const DnDCard = ({ id, children, updateBoard }) => {
   );
 };
 
-DnDCard.propTypes = checkProps({});
+DnDCard.propTypes = checkProps({
+  id: PropTypes.number.isRequired,
+  children: PropTypes.object,
+  updateBoard: PropTypes.func.isRequired
+});
 
 DnDCard.defaultProps = {};
 

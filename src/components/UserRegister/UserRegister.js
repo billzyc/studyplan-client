@@ -3,7 +3,6 @@ import checkProps from '@jam3/react-check-extra-props';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
@@ -11,11 +10,10 @@ import copy from '../../data/copy.json';
 
 import styles from './UserRegister.module.scss';
 
-function UserRegister({ copy }) {
+function UserRegister() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [cookies, setCookie] = useCookies(['token']);
 
   const handleEmailChange = e => {
     setEmail(e.currentTarget.value);
@@ -86,8 +84,6 @@ function UserRegister({ copy }) {
   );
 }
 
-UserRegister.propTypes = checkProps({
-  copy: PropTypes.object
-});
+UserRegister.propTypes = checkProps({});
 
 export default UserRegister;

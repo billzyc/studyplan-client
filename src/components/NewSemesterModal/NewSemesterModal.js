@@ -13,7 +13,7 @@ import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import { addSemester } from '../../redux/modules/semester';
 import copy from '../../data/copy.json';
 
-function NewSemesterModal({}) {
+function NewSemesterModal() {
   const [semesterYear, setSemesterYear] = useState('');
   const [semesterTerm, setSemesterTerm] = useState(TERM_KEYS.FALL);
   const [cookies] = useCookies(['token']);

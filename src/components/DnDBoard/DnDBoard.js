@@ -18,7 +18,7 @@ export const DnDBoardType = {
   ASSIGNED: 'assigned'
 };
 
-const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, ref) => {
+const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
   const semesterId = id;
   const [currentSemesterCourses, setCurrentSemesterCourses] = useState([]);
   const [cookies] = useCookies(['token']);
@@ -142,8 +142,14 @@ const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, r
   );
 });
 
-DnDBoard.propTypes = checkProps({});
+DnDBoard.propTypes = checkProps({
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  semester: PropTypes.string.isRequired,
+  styleClass: PropTypes.string
+});
 
-DnDBoard.defaultProps = {};
+DnDBoard.defaultProps = {
+  styleClass: DnDBoard.ASSIGNED
+};
 
 export default DnDBoard;

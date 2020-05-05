@@ -16,7 +16,7 @@ import { openModal, closeModal } from '../../redux/modules/modal';
 import { MODAL_KEYS } from '../../data/consts';
 import copy from '../../data/copy.json';
 
-function CoursePlanner({}) {
+function CoursePlanner() {
   const unassignedBoardRef = useRef();
   const [newCourseSubject, setNewCourseSubject] = useState('');
   const [newCourseNumber, setNewCourseNumber] = useState('');
