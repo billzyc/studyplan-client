@@ -8,6 +8,7 @@ import axios from 'axios';
 import styles from './DnDCard.module.scss';
 
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
+import copy from '../../data/copy.json';
 
 const DnDCard = ({ id, children, updateBoard }) => {
   const [cookies] = useCookies(['token']);
@@ -23,7 +24,7 @@ const DnDCard = ({ id, children, updateBoard }) => {
       })
       .catch(function(error) {
         console.log(error);
-        window.alert('Delete course error, please try again');
+        window.alert(copy.error.deleteCourse);
       });
   };
 

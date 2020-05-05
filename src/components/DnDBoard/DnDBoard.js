@@ -10,8 +10,8 @@ import styles from './DnDBoard.module.scss';
 
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import { replaceSemester } from '../../redux/modules/semester';
-
 import DnDCard from '../DnDCard/DnDCard';
+import copy from '../../data/copy.json';
 
 export const DnDBoardType = {
   UNASSIGNED: 'unassigned',
@@ -45,12 +45,12 @@ const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, r
           })
           .catch(function(error) {
             console.log(error);
-            window.alert('Update board error, please try again');
+            window.alert(copy.error.updateSemester);
           });
       })
       .catch(function(error) {
         console.log(error);
-        window.alert('Delete board error, please try again');
+        window.alert(copy.error.deleteSemester);
       });
   };
 
@@ -68,7 +68,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, r
       })
       .catch(function(error) {
         console.log(error);
-        window.alert('Fetch course error, please try again');
+        window.alert(copy.error.fetchCourse);
       });
   };
 
@@ -89,7 +89,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, r
       .then(response => {})
       .catch(function(error) {
         console.log(error);
-        window.alert('Update card error, please try again');
+        window.alert(copy.error.updateCourse);
       });
   };
 
@@ -135,7 +135,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass = DnDBoard.ASSIGNED }, r
       {renderCourseCards()}
       {semesterId === DnDBoardType.UNASSIGNED ? null : (
         <button onClick={deleteBoard} className={styles.delete}>
-          delete
+          {copy.DnDBoard.delete}
         </button>
       )}
     </div>

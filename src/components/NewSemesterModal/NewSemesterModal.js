@@ -11,6 +11,7 @@ import styles from './NewSemesterModal.module.scss';
 import { TERM_KEYS } from '../../data/consts';
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import { addSemester } from '../../redux/modules/semester';
+import copy from '../../data/copy.json';
 
 function NewSemesterModal({}) {
   const [semesterYear, setSemesterYear] = useState('');
@@ -23,7 +24,7 @@ function NewSemesterModal({}) {
     setSemesterYear(e.currentTarget.value);
   };
 
-  const handleNewCourseSubmit = useCallback(() => {
+  const handleNewSemesterSubmit = useCallback(() => {
     axios({
       method: 'post',
       headers: { authorization: cookies.token },
@@ -39,30 +40,30 @@ function NewSemesterModal({}) {
       })
       .catch(function(error) {
         console.log(error);
-        window.alert('Server error, please try again');
+        window.alert(copy.error.newSemester);
       });
   }, [cookies.token, dispatch, semesterTerm, semesterYear]);
 
   return (
     <section className={classnames(styles.newSemesterModal)}>
       <div className={styles.modalContainer}>
-        <h4>Enter first semester of your schedule</h4>
+        <h4>{copy.newSemesterModal.title}</h4>
         <input
           type="text"
           id="year"
           onChange={e => {
             handleYearChange(e);
           }}
-          placeholder="enter year (e.g 2020)"
+          placeholder={copy.newSemesterModal.enterYear}
           value={semesterYear}
         />
         <select id="semesters" onChange={e => setSemesterTerm(e.target.value)}>
-          <option value={TERM_KEYS.FALL}>Fall</option>
-          <option value={TERM_KEYS.WINTER}>Winter</option>
-          <option value={TERM_KEYS.SPRING}>Spring</option>
+          <option value={TERM_KEYS.FALL}>{TERM_KEYS.FALL}</option>
+          <option value={TERM_KEYS.WINTER}>{TERM_KEYS.WINTER}</option>
+          <option value={TERM_KEYS.SPRING}>{TERM_KEYS.SPRING}</option>
         </select>
-        <button onClick={() => handleNewCourseSubmit()} className={styles.submit}>
-          Submit
+        <button onClick={() => handleNewSemesterSubmit()} className={styles.submit}>
+          {copy.newSemesterModal.submit}
         </button>
       </div>
     </section>

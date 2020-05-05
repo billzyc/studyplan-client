@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
+import copy from '../../data/copy.json';
 
 import styles from './UserRegister.module.scss';
 
@@ -43,7 +44,7 @@ function UserRegister({ copy }) {
         Router.push('/signin');
       })
       .catch(function(error) {
-        window.alert('Registration error, please try again');
+        window.alert(copy.error.register);
         console.log(error);
       });
   };
@@ -58,7 +59,7 @@ function UserRegister({ copy }) {
         onChange={e => {
           handleNameChange(e);
         }}
-        placeholder="enter name"
+        placeholder={copy.register.nameInput}
         value={name}
       />
       <input
@@ -69,7 +70,7 @@ function UserRegister({ copy }) {
           handleEmailChange(e);
         }}
         className={styles.emailInput}
-        placeholder="enter email"
+        placeholder={copy.register.emailInput}
         value={email}
       />
       <input
@@ -77,10 +78,10 @@ function UserRegister({ copy }) {
         onChange={e => {
           handlePasswordChange(e);
         }}
-        placeholder="enter password"
+        placeholder={copy.register.passwordInput}
         value={password}
       />
-      <input type="submit" onClick={onLoginSubmit} className={styles.submit} value="Submit" />
+      <input type="submit" onClick={onLoginSubmit} className={styles.submit} value={copy.register.submit} />
     </section>
   );
 }

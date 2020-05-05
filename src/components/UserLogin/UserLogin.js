@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/modules/profile';
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
+import copy from '../../data/copy.json';
 
 import styles from './UserLogin.module.scss';
 
@@ -52,12 +53,12 @@ function UserLogin({ copy }) {
             Router.push('/courses');
           })
           .catch(function(error) {
-            window.alert('Server error, please try again');
+            window.alert(copy.error.fetchProfile);
             console.log(error);
           });
       })
       .catch(function(error) {
-        window.alert('Login error, please try again');
+        window.alert(copy.error.login);
         console.log(error);
       });
   };
@@ -71,7 +72,7 @@ function UserLogin({ copy }) {
         onChange={e => {
           handleEmailChange(e);
         }}
-        placeholder="enter email"
+        placeholder={copy.login.emailInput}
         value={email}
       />
       <input
@@ -79,11 +80,11 @@ function UserLogin({ copy }) {
         onChange={e => {
           handlePasswordChange(e);
         }}
-        placeholder="enter password"
+        placeholder={copy.login.passwordInput}
         value={password}
       />
       <button onClick={onLoginSubmit} className={styles.submit}>
-        Submit
+        {copy.login.submit}
       </button>
     </section>
   );

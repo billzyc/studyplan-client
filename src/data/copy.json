@@ -1,0 +1,41 @@
+{
+  "coursePlanner": {
+    "semester": "New Semester",
+    "course": "submit",
+    "courseInput": "enter course subject (e.g CS)",
+    "numberInput": "enter course number (e.g 136)"
+  },
+  "error": {
+    "fetchSemester": "Fetch semester information error, please try again",
+    "fetchCourses": "Fetch courses error, please try again",
+    "fetchCourse": "Fetch course information error, please try again",
+    "fetchProfile": "Fetch profile error, please try again",
+    "newCourse": "Add course error, please try again",
+    "newSemester": "Add semester error, please try again",
+    "deleteCourse": "Delete course error, please try again",
+    "deleteSemester": "Delete semester error, please try again",
+    "updateSemester": "Update board error, please try again",
+    "updateCourse": "Update card error, please try again",
+    "login": "Login error, please try again",
+    "register": "Registration error, please try again"
+  },
+  "DnDBoard": {
+    "delete": "Delete"
+  },
+  "newSemesterModal": {
+    "title": "add a semester",
+    "enterYear": "enter year (e.g 2020)",
+    "submit": "Submit"
+  },
+  "register": {
+    "nameInput": "enter name",
+    "emailInput": "enter email",
+    "passwordInput": "enter password",
+    "submit": "Submit"
+  },
+  "login": {
+    "emailInput": "enter email",
+    "passwordInput": "enter password",
+    "submit": "Submit"
+  }
+}

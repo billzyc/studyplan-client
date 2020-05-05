@@ -14,6 +14,7 @@ import { replaceSemester } from '../../redux/modules/semester';
 import { replaceCourse } from '../../redux/modules/course';
 import { openModal, closeModal } from '../../redux/modules/modal';
 import { MODAL_KEYS } from '../../data/consts';
+import copy from '../../data/copy.json';
 
 function CoursePlanner({}) {
   const unassignedBoardRef = useRef();
@@ -44,7 +45,7 @@ function CoursePlanner({}) {
       })
       .catch(function(error) {
         console.log(error);
-        window.alert('Fetch semester information error, please try again');
+        window.alert(copy.error.fetchSemester);
       });
   }, [cookies.token, dispatch]);
 
@@ -61,7 +62,7 @@ function CoursePlanner({}) {
       })
       .catch(function(error) {
         console.log(error);
-        window.alert('Fetch all course information error, please try again');
+        window.alert(copy.error.fetchCourses);
       });
   }, [cookies.token, dispatch]);
 
@@ -92,7 +93,7 @@ function CoursePlanner({}) {
       })
       .catch(function(error) {
         console.log(error);
-        window.alert('Login error, please try again');
+        window.alert(copy.error.newCourse);
       });
   };
 
@@ -132,7 +133,7 @@ function CoursePlanner({}) {
               }}
               className={styles.newSemester}
             >
-              New Semester
+              {copy.coursePlanner.semester}
             </button>
             <div>
               <input
@@ -141,7 +142,7 @@ function CoursePlanner({}) {
                 onChange={e => {
                   handleNewCourseSubject(e);
                 }}
-                placeholder="enter course subject (e.g CS)"
+                placeholder={copy.coursePlanner.courseInput}
                 value={newCourseSubject}
               />
               <input
@@ -150,11 +151,11 @@ function CoursePlanner({}) {
                 onChange={e => {
                   handleNewCourseNumber(e);
                 }}
-                placeholder="enter course number (e.g 136)"
+                placeholder={copy.coursePlanner.numberInput}
                 value={newCourseNumber}
               />
               <button onClick={onNewCourseSubmit} className={styles.courseSubmit}>
-                Submit
+                {copy.coursePlanner.course}
               </button>
             </div>
           </div>
