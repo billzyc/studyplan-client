@@ -53,7 +53,7 @@ function CoursePlanner() {
     axios({
       method: 'get',
       headers: { authorization: cookies.token },
-      url: API_ROUTES.COURSEITEMS,
+      url: API_ROUTES.COURSE_ITEMS,
       baseURL: apiBaseUrl
     })
       .then(response => {
@@ -82,7 +82,7 @@ function CoursePlanner() {
         course_number: newCourseNumber
       },
       headers: { authorization: cookies.token },
-      url: API_ROUTES.COURSEITEMS,
+      url: API_ROUTES.COURSE_ITEMS,
       baseURL: apiBaseUrl
     })
       .then(function(response) {

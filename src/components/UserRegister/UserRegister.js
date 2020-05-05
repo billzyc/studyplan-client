@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import copy from '../../data/copy.json';
+import { ROUTE_KEYS } from '../../data/consts';
 
 import styles from './UserRegister.module.scss';
 
@@ -39,7 +40,7 @@ function UserRegister() {
       baseURL: apiBaseUrl
     })
       .then(function(response) {
-        Router.push('/signin');
+        Router.push(ROUTE_KEYS.SIGN_IN);
       })
       .catch(function(error) {
         window.alert(copy.error.register);

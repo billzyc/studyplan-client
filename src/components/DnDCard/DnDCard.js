@@ -16,7 +16,7 @@ const DnDCard = ({ id, children, updateBoard }) => {
     axios({
       method: 'delete',
       headers: { authorization: cookies.token },
-      url: `${API_ROUTES.COURSEITEMS}${id}`,
+      url: `${API_ROUTES.COURSE_ITEMS}${id}`,
       baseURL: apiBaseUrl
     })
       .then(response => {

@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/modules/profile';
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import copy from '../../data/copy.json';
+import { ROUTE_KEYS } from '../../data/consts';
 
 import styles from './UserLogin.module.scss';
 
@@ -50,7 +51,7 @@ function UserLogin() {
           .then(async response => {
             const data = response.data;
             await dispatch(updateProfile(data[0]));
-            Router.push('/courses');
+            Router.push(ROUTE_KEYS.COURSES);
           })
           .catch(function(error) {
             window.alert(copy.error.fetchProfile);

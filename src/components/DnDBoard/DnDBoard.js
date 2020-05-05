@@ -58,7 +58,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
     axios({
       method: 'get',
       headers: { authorization: cookies.token },
-      url: API_ROUTES.COURSEITEMS,
+      url: API_ROUTES.COURSE_ITEMS,
       params: { semester_query: semesterId },
       baseURL: apiBaseUrl
     })
@@ -83,7 +83,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
         course_number: course_number,
         semester_placement: semesterId === 'unassigned' ? null : semesterId
       },
-      url: `${API_ROUTES.COURSEITEMS}${cardId}/`,
+      url: `${API_ROUTES.COURSE_ITEMS}${cardId}/`,
       baseURL: apiBaseUrl
     })
       .then(response => {})
