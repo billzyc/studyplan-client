@@ -23,7 +23,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
   const [currentSemesterCourses, setCurrentSemesterCourses] = useState([]);
   const [cookies] = useCookies(['token']);
   const dispatch = useDispatch();
-  const { courseInfo, semesterInfo } = useSelector(state => state);
+  const { courseInfo } = useSelector(state => state);
 
   const deleteBoard = () => {
     axios({

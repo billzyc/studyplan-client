@@ -21,7 +21,7 @@ function CoursePlanner() {
   const [newCourseNumber, setNewCourseNumber] = useState('');
   const [cookies] = useCookies(['token']);
   const dispatch = useDispatch();
-  const { semesterInfo, courseInfo } = useSelector(state => state);
+  const { semesterInfo } = useSelector(state => state);
 
   const handleModalPortal = useCallback(() => {
     if (Object.keys(semesterInfo).length === 0) {

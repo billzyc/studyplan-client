@@ -40,7 +40,9 @@ const DnDCard = ({ id, children, updateBoard, removeDraggedCard }) => {
 
   const dragEnd = e => {
     e.stopPropagation();
-    removeDraggedCard(id);
+    if (e.dataTransfer.dropEffect === 'move') {
+      removeDraggedCard(id);
+    }
   };
 
   return (
