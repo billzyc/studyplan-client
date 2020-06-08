@@ -8,10 +8,12 @@ import { useDispatch } from 'react-redux';
 
 import styles from './NewSemesterModal.module.scss';
 
+import { ReactComponent as XSvg } from '../../assets/svgs/x.svg';
 import { TERM_KEYS } from '../../data/consts';
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import { addSemester } from '../../redux/modules/semester';
 import copy from '../../data/copy.json';
+import { closeModal } from '../../redux/modules/modal';
 
 function NewSemesterModal() {
   const [semesterYear, setSemesterYear] = useState('');
@@ -47,6 +49,14 @@ function NewSemesterModal() {
   return (
     <section className={classnames(styles.newSemesterModal)}>
       <div className={styles.modalContainer}>
+        <div
+          className={styles.close}
+          onClick={() => {
+            dispatch(closeModal());
+          }}
+        >
+          <XSvg />
+        </div>
         <h4>{copy.newSemesterModal.title}</h4>
         <input
           type="text"

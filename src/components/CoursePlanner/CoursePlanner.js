@@ -9,20 +9,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './CoursePlanner.module.scss';
 
 import DnDBoard, { DnDBoardType } from '../DnDBoard/DnDBoard';
-import { API_ROUTES, apiBaseUrl } from '../../data/consts';
+import NewCourseModal from '../NewCourseModal/NewCourseModal';
+import { API_ROUTES, apiBaseUrl, MODAL_KEYS } from '../../data/consts';
 import { replaceSemester } from '../../redux/modules/semester';
 import { replaceCourse } from '../../redux/modules/course';
 import { openModal, closeModal } from '../../redux/modules/modal';
-import { MODAL_KEYS } from '../../data/consts';
 import copy from '../../data/copy.json';
 
 function CoursePlanner() {
   const unassignedBoardRef = useRef();
-  const [newCourseSubject, setNewCourseSubject] = useState('');
-  const [newCourseNumber, setNewCourseNumber] = useState('');
+  const [isCourseModalOpen, setIsCourseModel] = useState(false);
   const [cookies] = useCookies(['token']);
   const dispatch = useDispatch();
-  const { semesterInfo, courseInfo } = useSelector(state => state);
+  const { semesterInfo } = useSelector(state => state);
 
   const handleModalPortal = useCallback(() => {
     if (Object.keys(semesterInfo).length === 0) {
@@ -66,35 +65,8 @@ function CoursePlanner() {
       });
   }, [cookies.token, dispatch]);
 
-  const handleNewCourseSubject = e => {
-    setNewCourseSubject(e.currentTarget.value);
-  };
-
-  const handleNewCourseNumber = e => {
-    setNewCourseNumber(e.currentTarget.value);
-  };
-
-  const onNewCourseSubmit = () => {
-    axios({
-      method: 'post',
-      data: {
-        course_subject: newCourseSubject,
-        course_number: newCourseNumber
-      },
-      headers: { authorization: cookies.token },
-      url: API_ROUTES.COURSE_ITEMS,
-      baseURL: apiBaseUrl
-    })
-      .then(function(response) {
-        fetchAllCourses();
-        unassignedBoardRef.current.updateCourses();
-        setNewCourseSubject('');
-        setNewCourseNumber('');
-      })
-      .catch(function(error) {
-        console.log(error);
-        window.alert(copy.error.newCourse);
-      });
+  const closeCourseModal = () => {
+    setIsCourseModel(false);
   };
 
   const renderDnDBoard = () => {
@@ -106,6 +78,7 @@ function CoursePlanner() {
             key={semester_group.id}
             semester={semester_group.semester}
             styleClass={DnDBoardType.ASSIGNED}
+            fetchAllCourses={fetchAllCourses}
           ></DnDBoard>
         );
       });
@@ -121,8 +94,17 @@ function CoursePlanner() {
     handleModalPortal();
   }, [handleModalPortal]);
 
+  //TODO: Move NewCourseModal to ModalPortal and move semester info into redux
+
   return (
     <section className={classnames(styles.coursePlanner)}>
+      {isCourseModalOpen ? (
+        <NewCourseModal
+          fetchAllCourses={fetchAllCourses}
+          unassignedBoardRef={unassignedBoardRef}
+          closeCourseModal={closeCourseModal}
+        />
+      ) : null}
       <div className={styles.boardContainer}>{renderDnDBoard()}</div>
       <div className={styles.courseSelection}>
         <div className={styles.addCourses}>
@@ -135,34 +117,24 @@ function CoursePlanner() {
             >
               {copy.coursePlanner.semester}
             </button>
-            <div>
-              <input
-                type="text"
-                id="courseSubject"
-                onChange={e => {
-                  handleNewCourseSubject(e);
-                }}
-                placeholder={copy.coursePlanner.courseInput}
-                value={newCourseSubject}
-              />
-              <input
-                type="text"
-                id="courseNumber"
-                onChange={e => {
-                  handleNewCourseNumber(e);
-                }}
-                placeholder={copy.coursePlanner.numberInput}
-                value={newCourseNumber}
-              />
-              <button onClick={onNewCourseSubmit} className={styles.courseSubmit}>
-                {copy.coursePlanner.course}
-              </button>
-            </div>
+            <button
+              onClick={() => {
+                setIsCourseModel(true);
+              }}
+              className={styles.newSemester}
+            >
+              {copy.coursePlanner.course}
+            </button>
           </div>
         </div>
         <div className={styles.unassignedCourseList}>
           <div className={styles.boardContainer}>
-            <DnDBoard id={DnDBoardType.UNASSIGNED} styleClass={DnDBoardType.UNASSIGNED} ref={unassignedBoardRef} />
+            <DnDBoard
+              id={DnDBoardType.UNASSIGNED}
+              styleClass={DnDBoardType.UNASSIGNED}
+              ref={unassignedBoardRef}
+              fetchAllCourses={fetchAllCourses}
+            />
           </div>
         </div>
       </div>
