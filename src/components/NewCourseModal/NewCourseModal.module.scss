@@ -1,6 +1,6 @@
 @import '../../styles/shared.scss';
 
-.newSemesterModal {
+.newCourseModal {
   $inputWidth: px(200);
   @include position-100(fixed);
   @include flex-center;

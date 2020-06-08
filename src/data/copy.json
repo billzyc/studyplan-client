@@ -1,9 +1,7 @@
 {
   "coursePlanner": {
-    "semester": "New Semester",
-    "course": "submit",
-    "courseInput": "enter course subject (e.g CS)",
-    "numberInput": "enter course number (e.g 136)"
+    "semester": "Add New Semester",
+    "course": "Add New Course"
   },
   "error": {
     "fetchSemester": "Fetch semester information error, please try again",
@@ -26,6 +24,12 @@
     "title": "add a semester",
     "enterYear": "enter year (e.g 2020)",
     "submit": "Submit"
+  },
+  "newCourseModal": {
+    "title": "add a course",
+    "submit": "Add New Course",
+    "courseInput": "enter course subject (e.g CS)",
+    "numberInput": "enter course number (e.g 136)"
   },
   "register": {
     "nameInput": "enter name",

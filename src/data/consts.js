@@ -1,4 +1,4 @@
-export const apiBaseUrl = `http://127.0.0.1:8000/api`;
+export const apiBaseUrl = `ec2-18-188-30-63.us-east-2.compute.amazonaws.com/api`;
 
 export const API_ROUTES = {
   LOGIN: `/login/`,
@@ -19,7 +19,8 @@ export const TERM_KEYS = {
 };
 
 export const MODAL_KEYS = {
-  NEW_SEMESTER: 'semester'
+  NEW_SEMESTER: 'semester',
+  NEW_COURSE: 'course'
 };
 
 export const ROUTE_KEYS = {
