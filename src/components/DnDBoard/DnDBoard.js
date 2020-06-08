@@ -23,7 +23,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
   const [currentSemesterCourses, setCurrentSemesterCourses] = useState([]);
   const [cookies] = useCookies(['token']);
   const dispatch = useDispatch();
-  const { courseInfo } = useSelector(state => state);
+  const { courseInfo, semesterInfo } = useSelector(state => state);
 
   const deleteBoard = () => {
     axios({
@@ -75,6 +75,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
   const updateCardPlacement = (cardId, card) => {
     const currentCourse = courseInfo.find(course => course.id === parseInt(cardId));
     const { course_number, course_subject } = currentCourse;
+    setCurrentSemesterCourses([...currentSemesterCourses, currentCourse]);
     axios({
       method: 'put',
       headers: { authorization: cookies.token },
@@ -86,7 +87,9 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
       url: `${API_ROUTES.COURSE_ITEMS}${cardId}/`,
       baseURL: apiBaseUrl
     })
-      .then(response => {})
+      .then(response => {
+        fetchCurrentSemesterCourses();
+      })
       .catch(function(error) {
         console.log(error);
         window.alert(copy.error.updateCourse);
@@ -96,9 +99,6 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
   const drop = e => {
     e.preventDefault();
     const cardId = e.dataTransfer.getData('cardId');
-    const card = document.getElementById(cardId);
-    card.style.display = 'block';
-    e.target.appendChild(card);
     updateCardPlacement(cardId);
   };
 
@@ -106,11 +106,21 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
     e.preventDefault();
   };
 
+  const removeDraggedCard = removedCourseID => {
+    const filteredCourseList = currentSemesterCourses.filter(course => course.id !== removedCourseID);
+    setCurrentSemesterCourses(filteredCourseList);
+  };
+
   const renderCourseCards = () => {
     if (currentSemesterCourses.length > 0) {
       return currentSemesterCourses.map(course => {
         return (
-          <DnDCard id={course.id} key={course.id} updateBoard={fetchCurrentSemesterCourses}>
+          <DnDCard
+            id={course.id}
+            key={course.id}
+            updateBoard={fetchCurrentSemesterCourses}
+            removeDraggedCard={removeDraggedCard}
+          >
             <p>
               {course.course_subject} {course.course_number}
             </p>
@@ -132,7 +142,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
   return (
     <div id={id} onDrop={drop} onDragOver={dragOver} className={classnames(styles[styleClass])}>
       {semester && <p>{semester}</p>}
-      {renderCourseCards()}
+      <React.Fragment>{renderCourseCards()}</React.Fragment>
       {semesterId === DnDBoardType.UNASSIGNED ? null : (
         <button onClick={deleteBoard} className={styles.delete}>
           {copy.DnDBoard.delete}

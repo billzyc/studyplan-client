@@ -9,11 +9,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './CoursePlanner.module.scss';
 
 import DnDBoard, { DnDBoardType } from '../DnDBoard/DnDBoard';
-import { API_ROUTES, apiBaseUrl } from '../../data/consts';
+import { API_ROUTES, apiBaseUrl, UW_API_ROUTES, MODAL_KEYS, KEYS } from '../../data/consts';
 import { replaceSemester } from '../../redux/modules/semester';
 import { replaceCourse } from '../../redux/modules/course';
 import { openModal, closeModal } from '../../redux/modules/modal';
-import { MODAL_KEYS } from '../../data/consts';
 import copy from '../../data/copy.json';
 
 function CoursePlanner() {
@@ -74,12 +73,24 @@ function CoursePlanner() {
     setNewCourseNumber(e.currentTarget.value);
   };
 
-  const onNewCourseSubmit = () => {
+  const onNewCourseSubmit = async () => {
+    const response = await axios.get(
+      `${UW_API_ROUTES.BASEURL}${newCourseSubject}/${newCourseNumber}${UW_API_ROUTES.PREREQ}`,
+      {
+        params: {
+          key: KEYS.UW
+        }
+      }
+    );
+
+    const preReqs = await { preReqs: response.data.data.prerequisites_parsed };
+
     axios({
       method: 'post',
       data: {
         course_subject: newCourseSubject,
-        course_number: newCourseNumber
+        course_number: newCourseNumber,
+        reqs: JSON.stringify({ ...preReqs })
       },
       headers: { authorization: cookies.token },
       url: API_ROUTES.COURSE_ITEMS,
@@ -106,6 +117,7 @@ function CoursePlanner() {
             key={semester_group.id}
             semester={semester_group.semester}
             styleClass={DnDBoardType.ASSIGNED}
+            fetchAllCourses={fetchAllCourses}
           ></DnDBoard>
         );
       });
@@ -162,7 +174,12 @@ function CoursePlanner() {
         </div>
         <div className={styles.unassignedCourseList}>
           <div className={styles.boardContainer}>
-            <DnDBoard id={DnDBoardType.UNASSIGNED} styleClass={DnDBoardType.UNASSIGNED} ref={unassignedBoardRef} />
+            <DnDBoard
+              id={DnDBoardType.UNASSIGNED}
+              styleClass={DnDBoardType.UNASSIGNED}
+              ref={unassignedBoardRef}
+              fetchAllCourses={fetchAllCourses}
+            />
           </div>
         </div>
       </div>

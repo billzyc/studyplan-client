@@ -11,7 +11,7 @@ import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import copy from '../../data/copy.json';
 import { ReactComponent as XSvg } from '../../assets/svgs/x.svg';
 
-const DnDCard = ({ id, children, updateBoard }) => {
+const DnDCard = ({ id, children, updateBoard, removeDraggedCard }) => {
   const [cookies] = useCookies(['token']);
   const deleteCourse = () => {
     axios({
@@ -37,8 +37,21 @@ const DnDCard = ({ id, children, updateBoard }) => {
   const dragOver = e => {
     e.stopPropagation();
   };
+
+  const dragEnd = e => {
+    e.stopPropagation();
+    removeDraggedCard(id);
+  };
+
   return (
-    <div id={id} onDragStart={dragStart} onDragOver={dragOver} draggable="true" className={classnames(styles.card)}>
+    <div
+      id={id}
+      onDragStart={dragStart}
+      onDragEnd={dragEnd}
+      onDragOver={dragOver}
+      draggable="true"
+      className={classnames(styles.card)}
+    >
       {children}
       <button className={styles.delete} onClick={deleteCourse}>
         <XSvg />
@@ -50,7 +63,8 @@ const DnDCard = ({ id, children, updateBoard }) => {
 DnDCard.propTypes = checkProps({
   id: PropTypes.number.isRequired,
   children: PropTypes.object,
-  updateBoard: PropTypes.func.isRequired
+  updateBoard: PropTypes.func.isRequired,
+  removeDraggedCard: PropTypes.func.isRequired
 });
 
 DnDCard.defaultProps = {};
