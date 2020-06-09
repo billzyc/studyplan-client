@@ -1,4 +1,4 @@
-export const apiBaseUrl = `ec2-18-188-30-63.us-east-2.compute.amazonaws.com/api`;
+export const apiBaseUrl = `http://ec2-18-188-30-63.us-east-2.compute.amazonaws.com/api`;
 
 export const API_ROUTES = {
   LOGIN: `/login/`,
