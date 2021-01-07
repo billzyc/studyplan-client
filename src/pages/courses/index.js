@@ -9,23 +9,17 @@ import { withRedux } from '../../redux/withRedux';
 import styles from './Courses.module.scss';
 
 function Courses({ copy }) {
-  const CoursePlanner = dynamic(
-    () => import(/* webpackChunkName: "LoginModal" */ '../../components/CoursePlanner/CoursePlanner'),
-    {
-      ssr: false
-    }
-  );
-
-  const Navbar = dynamic(() => import(/* webpackChunkName: "LoginModal" */ '../../components/Navbar/Navbar'), {
+  const CoursePlanner = dynamic(() => import('../../components/CoursePlanner/CoursePlanner'), {
     ssr: false
   });
 
-  const ModalPortal = dynamic(
-    () => import(/* webpackChunkName: "LogModalPortalinModal" */ '../../components/ModalPortal/ModalPortal'),
-    {
-      ssr: false
-    }
-  );
+  const Navbar = dynamic(() => import('../../components/Navbar/Navbar'), {
+    ssr: false
+  });
+
+  const ModalPortal = dynamic(() => import('../../components/ModalPortal/ModalPortal'), {
+    ssr: false
+  });
   return (
     <>
       <Head>

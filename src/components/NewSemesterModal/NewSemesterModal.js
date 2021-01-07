@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 
 import styles from './NewSemesterModal.module.scss';
 
-import { ReactComponent as XSvg } from '../../assets/svgs/x.svg';
+import { ReactComponent as CloseSVG } from '../../assets/svgs/close.svg';
 import { TERM_KEYS } from '../../data/consts';
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import { addSemester } from '../../redux/modules/semester';
@@ -39,6 +39,7 @@ function NewSemesterModal() {
       .then(response => {
         const data = response.data;
         dispatch(addSemester(data));
+        dispatch(closeModal());
       })
       .catch(function(error) {
         console.log(error);
@@ -55,7 +56,7 @@ function NewSemesterModal() {
             dispatch(closeModal());
           }}
         >
-          <XSvg />
+          <CloseSVG />
         </div>
         <h4>{copy.newSemesterModal.title}</h4>
         <input

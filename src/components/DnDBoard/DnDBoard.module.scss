@@ -5,31 +5,36 @@
   flex-shrink: 0;
   border-radius: px(5);
   padding: px(10);
-  background-color: $tan;
+  background-color: $grey;
   overflow-y: scroll;
-
-  .delete {
-    position: absolute;
-    bottom: px(50);
-    background-color: $red;
-  }
 }
 
 .assigned {
-  @include flex-center-vert;
-  flex-direction: column;
-  width: px(300);
-  margin: px(15);
+  height: 100%;
+  margin: 0 px(15);
+  .tileContainer {
+    @include flex-center-vert;
+    flex-direction: column;
+    width: $tileLength;
+  }
 }
 
 .unassigned {
-  @include box(100%);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: px(10);
-  row-gap: px(10);
-  grid-auto-rows: px(50);
-  .delete {
-    display: none;
+  margin: px(20);
+  .tileContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: px(10);
+    row-gap: px(10);
+    .delete {
+      display: none;
+    }
   }
+}
+
+.semesterHeaders {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: px(20) 0;
 }

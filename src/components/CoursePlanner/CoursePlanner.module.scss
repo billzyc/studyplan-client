@@ -6,20 +6,26 @@
   flex-direction: column;
 
   .boardContainer {
+    flex: 5 0;
     position: relative;
     display: flex;
     justify-content: flex-start;
+    align-items: flex-start;
     height: 50%;
     width: 100%;
+    margin: px(20) 0;
     overflow-x: scroll;
+
+    .newBoard {
+      padding: 40px;
+      border-radius: 10px;
+      border: 1px dashed black;
+      margin-left: px(20);
+    }
   }
 
   .courseSelection {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    flex-grow: 1;
-
+    flex: 1 1;
     .addCourses {
       @include box(100%);
       @include flex-center;
@@ -48,7 +54,7 @@
         button {
           width: $inputWidth;
           height: px(50);
-          color: $beige;
+          color: $white;
           background-color: $tan;
           border-radius: px(5);
         }
@@ -56,15 +62,6 @@
         .newSemester {
           margin-bottom: px(30);
         }
-      }
-    }
-
-    .unassignedCourseList {
-      @include flex-center;
-      flex-direction: column;
-
-      .boardContainer {
-        @include box(80%);
       }
     }
   }

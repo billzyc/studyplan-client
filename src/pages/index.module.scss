@@ -4,15 +4,25 @@
   @include position-100(fixed);
   @include flex-center;
   flex-direction: column;
-  background-color: $beige;
+  background-color: $white;
+
+  h1,
+  p,
+  img {
+    padding-bottom: px(30);
+  }
+
+  img {
+    width: 40%;
+  }
 
   .links {
     @include flex-center;
-    margin-top: px(50);
+    margin-top: px(10);
     height: px(50);
     width: px(300);
     color: $white;
-    background-color: $pink;
+    background-color: $green;
     border-radius: px(5);
   }
 }

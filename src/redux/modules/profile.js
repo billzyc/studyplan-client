@@ -13,6 +13,7 @@ export default function reducer(state = defaultState, action) {
 
 // Action Creators
 export function updateProfile(profileInfo) {
+  console.log(profileInfo);
   return {
     type: 'update',
     profileInfo: profileInfo

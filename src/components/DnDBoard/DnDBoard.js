@@ -13,12 +13,15 @@ import { replaceSemester } from '../../redux/modules/semester';
 import DnDCard from '../DnDCard/DnDCard';
 import copy from '../../data/copy.json';
 
+import deleteSVG from '../../assets/svgs/delete.svg';
+import addSVG from '../../assets/svgs/add.svg';
+
 export const DnDBoardType = {
   UNASSIGNED: 'unassigned',
   ASSIGNED: 'assigned'
 };
 
-const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
+const DnDBoard = forwardRef(({ id, semester, styleClass, setIsCourseModel }, ref) => {
   const semesterId = id;
   const [currentSemesterCourses, setCurrentSemesterCourses] = useState([]);
   const [cookies] = useCookies(['token']);
@@ -120,11 +123,9 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
             key={course.id}
             updateBoard={fetchCurrentSemesterCourses}
             removeDraggedCard={removeDraggedCard}
-          >
-            <p>
-              {course.course_subject} {course.course_number}
-            </p>
-          </DnDCard>
+            courseSubject={course.course_subject}
+            courseNumber={course.course_number}
+          />
         );
       });
     }
@@ -140,14 +141,35 @@ const DnDBoard = forwardRef(({ id, semester, styleClass }, ref) => {
   }, []);
 
   return (
-    <div id={id} onDrop={drop} onDragOver={dragOver} className={classnames(styles[styleClass])}>
-      {semester && <p>{semester}</p>}
-      <React.Fragment>{renderCourseCards()}</React.Fragment>
-      {semesterId === DnDBoardType.UNASSIGNED ? null : (
-        <button onClick={deleteBoard} className={styles.delete}>
-          {copy.DnDBoard.delete}
-        </button>
-      )}
+    <div
+      id={id}
+      onDrop={drop}
+      onDragOver={dragOver}
+      className={styles.boardContainer}
+      className={classnames(styles[styleClass])}
+    >
+      <div className={styles.semesterHeaders}>
+        {semesterId !== DnDBoardType.UNASSIGNED ? (
+          <p className={styles.semesterTitle}>{semester}</p>
+        ) : (
+          <p className={styles.semesterTitle}>Courses to complete</p>
+        )}
+
+        {semesterId === DnDBoardType.UNASSIGNED ? (
+          <img
+            src={addSVG}
+            alt="add"
+            onClick={() => {
+              setIsCourseModel(true);
+            }}
+          />
+        ) : (
+          <img src={deleteSVG} alt="delete" onClick={deleteBoard} className={styles.delete} />
+        )}
+      </div>
+      <div className={styles.tileContainer}>
+        <React.Fragment>{renderCourseCards()}</React.Fragment>
+      </div>
     </div>
   );
 });

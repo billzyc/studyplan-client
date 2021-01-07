@@ -10,14 +10,11 @@ import { withRedux } from '../../redux/withRedux';
 import styles from './Register.module.scss';
 
 function Register({ copy }) {
-  const UserRegister = dynamic(
-    () => import(/* webpackChunkName: "LoginModal" */ '../../components/UserRegister/UserRegister'),
-    {
-      ssr: false
-    }
-  );
+  const UserRegister = dynamic(() => import('../../components/UserRegister/UserRegister'), {
+    ssr: false
+  });
 
-  const Navbar = dynamic(() => import(/* webpackChunkName: "LoginModal" */ '../../components/Navbar/Navbar'), {
+  const Navbar = dynamic(() => import('../../components/Navbar/Navbar'), {
     ssr: false
   });
 

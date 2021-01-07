@@ -13,6 +13,7 @@ import copy from '../../data/copy.json';
 import { ROUTE_KEYS } from '../../data/consts';
 
 import styles from './UserLogin.module.scss';
+import loginSVG from '../../assets/svgs/login.svg';
 
 function UserLogin() {
   const [email, setEmail] = useState('');
@@ -66,27 +67,30 @@ function UserLogin() {
 
   return (
     <section className={classnames(styles.userLogin)}>
-      <h2>Sign in</h2>
-      <input
-        type="email"
-        id="email"
-        onChange={e => {
-          handleEmailChange(e);
-        }}
-        placeholder={copy.login.emailInput}
-        value={email}
-      />
-      <input
-        type="password"
-        onChange={e => {
-          handlePasswordChange(e);
-        }}
-        placeholder={copy.login.passwordInput}
-        value={password}
-      />
-      <button onClick={onLoginSubmit} className={styles.submit}>
-        {copy.login.submit}
-      </button>
+      <div className={classnames(styles.signInContainer)}>
+        <img src={loginSVG} alt="login" />
+        <h2>Sign in</h2>
+        <input
+          type="email"
+          id="email"
+          onChange={e => {
+            handleEmailChange(e);
+          }}
+          placeholder={copy.login.emailInput}
+          value={email}
+        />
+        <input
+          type="password"
+          onChange={e => {
+            handlePasswordChange(e);
+          }}
+          placeholder={copy.login.passwordInput}
+          value={password}
+        />
+        <button onClick={onLoginSubmit} className={styles.submit}>
+          {copy.login.submit}
+        </button>
+      </div>
     </section>
   );
 }

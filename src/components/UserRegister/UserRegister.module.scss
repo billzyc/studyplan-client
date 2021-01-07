@@ -5,32 +5,44 @@
 
   @include position-100(relative);
   @include flex-center;
-  flex-direction: column;
 
-  h2 {
-    position: absolute;
-    top: px(125);
-    color: $grey;
-  }
+  .signUpContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: px(30);
+    border-radius: 20px;
+    box-shadow: $softBoxShadow;
 
-  input {
-    width: $inputWidth;
-    height: px(50);
-    margin-bottom: px(15);
-    text-indent: px(10);
-    border: solid 1px;
-    border-color: $tan;
-    border-radius: px(5);
-    color: $grey;
-    background-color: transparent;
-  }
+    h2 {
+      color: $black;
+      margin-bottom: 30px;
+    }
 
-  .submit {
-    width: $inputWidth;
-    height: px(50);
-    color: $beige;
-    background-color: $pink;
-    border-radius: px(5);
+    img {
+      width: 30%;
+      padding-bottom: 20px;
+    }
+
+    input {
+      width: $inputWidth;
+      height: px(50);
+      margin-bottom: px(15);
+      text-indent: px(10);
+      border: solid 1px;
+      border-color: $tan;
+      border-radius: px(5);
+      color: $black;
+      background-color: transparent;
+    }
+
+    .submit {
+      width: $inputWidth;
+      height: px(50);
+      color: $white;
+      background-color: $green;
+      border-radius: px(5);
+    }
   }
 
   @include breakpoint(desktopSm) {

@@ -2,24 +2,22 @@
 
 .card {
   position: relative;
-  @include flex-center;
-  width: 100%;
-  height: px(50);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: $tileLength;
   margin-bottom: px(15);
-  padding: px(15);
+  padding: px(20);
   border-radius: px(5);
-  background-color: $pink;
+  background-color: $white;
   cursor: pointer;
 
-  .delete {
-    position: absolute;
-    @include flex-center;
-    width: px(15);
-    height: px(30);
-    right: px(15);
+  .title {
+    display: flex;
+    align-items: center;
 
-    svg {
-      @include box(100%);
+    img {
+      padding-right: 10px;
     }
   }
 }

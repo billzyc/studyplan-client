@@ -10,6 +10,7 @@ import copy from '../../data/copy.json';
 import { ROUTE_KEYS } from '../../data/consts';
 
 import styles from './UserRegister.module.scss';
+import registerSVG from '../../assets/svgs/register.svg';
 
 function UserRegister() {
   const [email, setEmail] = useState('');
@@ -50,37 +51,40 @@ function UserRegister() {
 
   return (
     <section className={classnames(styles.userRegister)}>
-      <h2>Register</h2>
+      <div className={classnames(styles.signUpContainer)}>
+        <img src={registerSVG} alt="register" />
+        <h2>Register</h2>
 
-      <input
-        type="text"
-        id="name"
-        onChange={e => {
-          handleNameChange(e);
-        }}
-        placeholder={copy.register.nameInput}
-        value={name}
-      />
-      <input
-        type="email"
-        id="email"
-        required
-        onChange={e => {
-          handleEmailChange(e);
-        }}
-        className={styles.emailInput}
-        placeholder={copy.register.emailInput}
-        value={email}
-      />
-      <input
-        type="password"
-        onChange={e => {
-          handlePasswordChange(e);
-        }}
-        placeholder={copy.register.passwordInput}
-        value={password}
-      />
-      <input type="submit" onClick={onLoginSubmit} className={styles.submit} value={copy.register.submit} />
+        <input
+          type="text"
+          id="name"
+          onChange={e => {
+            handleNameChange(e);
+          }}
+          placeholder={copy.register.nameInput}
+          value={name}
+        />
+        <input
+          type="email"
+          id="email"
+          required
+          onChange={e => {
+            handleEmailChange(e);
+          }}
+          className={styles.emailInput}
+          placeholder={copy.register.emailInput}
+          value={email}
+        />
+        <input
+          type="password"
+          onChange={e => {
+            handlePasswordChange(e);
+          }}
+          placeholder={copy.register.passwordInput}
+          value={password}
+        />
+        <input type="submit" onClick={onLoginSubmit} className={styles.submit} value={copy.register.submit} />
+      </div>
     </section>
   );
 }

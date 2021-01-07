@@ -10,11 +10,11 @@ import { withRedux } from '../../redux/withRedux';
 import styles from './SignIn.module.scss';
 
 function SignIn({ copy }) {
-  const UserLogin = dynamic(() => import(/* webpackChunkName: "LoginModal" */ '../../components/UserLogin/UserLogin'), {
+  const UserLogin = dynamic(() => import('../../components/UserLogin/UserLogin'), {
     ssr: false
   });
 
-  const Navbar = dynamic(() => import(/* webpackChunkName: "LoginModal" */ '../../components/Navbar/Navbar'), {
+  const Navbar = dynamic(() => import('../../components/Navbar/Navbar'), {
     ssr: false
   });
 

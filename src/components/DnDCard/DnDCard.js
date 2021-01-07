@@ -9,9 +9,10 @@ import styles from './DnDCard.module.scss';
 
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import copy from '../../data/copy.json';
-import { ReactComponent as XSvg } from '../../assets/svgs/x.svg';
+import { ReactComponent as DeleteSVG } from '../../assets/svgs/close.svg';
+import bookSVG from '../../assets/svgs/book.svg';
 
-const DnDCard = ({ id, children, updateBoard, removeDraggedCard }) => {
+const DnDCard = ({ id, courseNumber, courseSubject, updateBoard, removeDraggedCard }) => {
   const [cookies] = useCookies(['token']);
   const deleteCourse = () => {
     axios({
@@ -47,17 +48,21 @@ const DnDCard = ({ id, children, updateBoard, removeDraggedCard }) => {
 
   return (
     <div
+      className={classnames(styles.card)}
       id={id}
       onDragStart={dragStart}
       onDragEnd={dragEnd}
       onDragOver={dragOver}
       draggable="true"
-      className={classnames(styles.card)}
     >
-      {children}
-      <button className={styles.delete} onClick={deleteCourse}>
-        <XSvg />
-      </button>
+      <div className={classnames(styles.title)}>
+        <img src={bookSVG} alt="course" />
+        <p>
+          {courseSubject}-{courseNumber}
+        </p>
+      </div>
+
+      <DeleteSVG onClick={deleteCourse} />
     </div>
   );
 };

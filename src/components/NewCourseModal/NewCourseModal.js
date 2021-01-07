@@ -8,8 +8,7 @@ import { useDispatch } from 'react-redux';
 
 import styles from './NewCourseModal.module.scss';
 
-import { closeModal } from '../../redux/modules/modal';
-import { ReactComponent as XSvg } from '../../assets/svgs/x.svg';
+import { ReactComponent as CloseSVG } from '../../assets/svgs/close.svg';
 import { API_ROUTES, apiBaseUrl, UW_API_ROUTES, KEYS } from '../../data/consts';
 import copy from '../../data/copy.json';
 
@@ -44,8 +43,8 @@ const NewCourseModal = ({ unassignedBoardRef, fetchAllCourses, closeCourseModal 
       method: 'post',
       data: {
         course_subject: newCourseSubject,
-        course_number: newCourseNumber,
-        reqs: JSON.stringify({ ...preReqs })
+        course_number: newCourseNumber
+        // reqs: JSON.stringify({ ...preReqs })
       },
       headers: { authorization: cookies.token },
       url: API_ROUTES.COURSE_ITEMS,
@@ -70,10 +69,10 @@ const NewCourseModal = ({ unassignedBoardRef, fetchAllCourses, closeCourseModal 
         <div
           className={styles.close}
           onClick={() => {
-            dispatch(closeModal());
+            closeCourseModal();
           }}
         >
-          <XSvg />
+          <CloseSVG />
         </div>
         <h4>{copy.newCourseModal.title}</h4>
         <input

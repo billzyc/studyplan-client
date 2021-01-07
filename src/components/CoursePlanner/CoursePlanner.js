@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import classnames from 'classnames';
@@ -79,20 +79,17 @@ function CoursePlanner() {
             semester={semester_group.semester}
             styleClass={DnDBoardType.ASSIGNED}
             fetchAllCourses={fetchAllCourses}
+            setIsCourseModel={setIsCourseModel}
           ></DnDBoard>
         );
       });
     }
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchSavedSemesters();
     fetchAllCourses();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    handleModalPortal();
-  }, [handleModalPortal]);
 
   //TODO: Move NewCourseModal to ModalPortal and move semester info into redux
 
@@ -105,38 +102,25 @@ function CoursePlanner() {
           closeCourseModal={closeCourseModal}
         />
       ) : null}
-      <div className={styles.boardContainer}>{renderDnDBoard()}</div>
+      <div className={styles.boardContainer}>
+        <button
+          className={styles.newBoard}
+          onClick={() => {
+            dispatch(openModal(MODAL_KEYS.NEW_SEMESTER));
+          }}
+        >
+          Add new Semester
+        </button>
+        {renderDnDBoard()}
+      </div>
       <div className={styles.courseSelection}>
-        <div className={styles.addCourses}>
-          <div className={styles.buttonContainer}>
-            <button
-              onClick={() => {
-                dispatch(openModal(MODAL_KEYS.NEW_SEMESTER));
-              }}
-              className={styles.newSemester}
-            >
-              {copy.coursePlanner.semester}
-            </button>
-            <button
-              onClick={() => {
-                setIsCourseModel(true);
-              }}
-              className={styles.newSemester}
-            >
-              {copy.coursePlanner.course}
-            </button>
-          </div>
-        </div>
-        <div className={styles.unassignedCourseList}>
-          <div className={styles.boardContainer}>
-            <DnDBoard
-              id={DnDBoardType.UNASSIGNED}
-              styleClass={DnDBoardType.UNASSIGNED}
-              ref={unassignedBoardRef}
-              fetchAllCourses={fetchAllCourses}
-            />
-          </div>
-        </div>
+        <DnDBoard
+          id={DnDBoardType.UNASSIGNED}
+          styleClass={DnDBoardType.UNASSIGNED}
+          ref={unassignedBoardRef}
+          fetchAllCourses={fetchAllCourses}
+          setIsCourseModel={setIsCourseModel}
+        />
       </div>
     </section>
   );
