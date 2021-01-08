@@ -12,13 +12,11 @@ Back end developed with Python, Django, Django Rest Framework and Vagrant. Back 
 ## Running Production Build:
 
 `cd studyplan-client`  
-`npm start`
-
-## Creating Production Build:
-
-`cd studyplan-client`  
-`npm run build:prod:static`
-
+`npm install`  
+`npm run build:prod:static`  
+`npm start`  
+  
+  
 ## Local Development:
 
 `cd studyplan-client`  

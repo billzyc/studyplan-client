@@ -1,1 +1,0 @@
-self.__BUILD_MANIFEST = {__rewrites:[],sortedPages:["\u002F","\u002F_app","\u002F_error","\u002Fcourses","\u002Flogin"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
