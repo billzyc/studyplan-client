@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import Link from 'next/link';
 
 import styles from './index.module.scss';
-import planningSVG from '../assets/svgs/planning.svg';
+import { ReactComponent as PlanningSVG } from '../assets/svgs/planning.svg';
 
 import { withRedux } from '../redux/withRedux';
 import { setLandingLoaded } from '../redux/modules/app';
@@ -38,10 +38,10 @@ function Landing() {
       </Head>
       <h1>My Study Plan</h1>
       <p>Easily visualize and plan your university courses with kanban boards! </p>
-      <img src={planningSVG} alt="planning" />
+      <PlanningSVG className={styles.planningSVG} />
       <h3>Getting Started</h3>
-      <Link href="/signin">
-        <a className={styles.links}>Login Page</a>
+      <Link href="/login">
+        <a className={styles.links}>Login</a>
       </Link>
       <Link href="/register">
         <a className={styles.links}>Register</a>

@@ -13,8 +13,8 @@ import { replaceSemester } from '../../redux/modules/semester';
 import DnDCard from '../DnDCard/DnDCard';
 import copy from '../../data/copy.json';
 
-import deleteSVG from '../../assets/svgs/delete.svg';
-import addSVG from '../../assets/svgs/add.svg';
+import { ReactComponent as DeleteSVG } from '../../assets/svgs/delete.svg';
+import { ReactComponent as AddSVG } from '../../assets/svgs/add.svg';
 
 export const DnDBoardType = {
   UNASSIGNED: 'unassigned',
@@ -26,7 +26,7 @@ const DnDBoard = forwardRef(({ id, semester, styleClass, setIsCourseModel }, ref
   const [currentSemesterCourses, setCurrentSemesterCourses] = useState([]);
   const [cookies] = useCookies(['token']);
   const dispatch = useDispatch();
-  const { courseInfo } = useSelector(state => state);
+  const { courseInfo } = useSelector((state) => state);
 
   const deleteBoard = () => {
     axios({
@@ -35,23 +35,23 @@ const DnDBoard = forwardRef(({ id, semester, styleClass, setIsCourseModel }, ref
       url: `${API_ROUTES.SEMESTERS}${id}`,
       baseURL: apiBaseUrl
     })
-      .then(response => {
+      .then((response) => {
         axios({
           method: 'get',
           headers: { authorization: cookies.token },
           url: API_ROUTES.SEMESTERS,
           baseURL: apiBaseUrl
         })
-          .then(response => {
+          .then((response) => {
             const data = response.data;
             dispatch(replaceSemester(data));
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log(error);
             window.alert(copy.error.updateSemester);
           });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
         window.alert(copy.error.deleteSemester);
       });
@@ -65,18 +65,18 @@ const DnDBoard = forwardRef(({ id, semester, styleClass, setIsCourseModel }, ref
       params: { semester_query: semesterId },
       baseURL: apiBaseUrl
     })
-      .then(response => {
+      .then((response) => {
         const data = response.data;
         setCurrentSemesterCourses(data);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
         window.alert(copy.error.fetchCourse);
       });
   };
 
   const updateCardPlacement = (cardId, card) => {
-    const currentCourse = courseInfo.find(course => course.id === parseInt(cardId));
+    const currentCourse = courseInfo.find((course) => course.id === parseInt(cardId));
     const { course_number, course_subject } = currentCourse;
     setCurrentSemesterCourses([...currentSemesterCourses, currentCourse]);
     axios({
@@ -90,33 +90,33 @@ const DnDBoard = forwardRef(({ id, semester, styleClass, setIsCourseModel }, ref
       url: `${API_ROUTES.COURSE_ITEMS}${cardId}/`,
       baseURL: apiBaseUrl
     })
-      .then(response => {
+      .then((response) => {
         fetchCurrentSemesterCourses();
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
         window.alert(copy.error.updateCourse);
       });
   };
 
-  const drop = e => {
+  const drop = (e) => {
     e.preventDefault();
     const cardId = e.dataTransfer.getData('cardId');
     updateCardPlacement(cardId);
   };
 
-  const dragOver = e => {
+  const dragOver = (e) => {
     e.preventDefault();
   };
 
-  const removeDraggedCard = removedCourseID => {
-    const filteredCourseList = currentSemesterCourses.filter(course => course.id !== removedCourseID);
+  const removeDraggedCard = (removedCourseID) => {
+    const filteredCourseList = currentSemesterCourses.filter((course) => course.id !== removedCourseID);
     setCurrentSemesterCourses(filteredCourseList);
   };
 
   const renderCourseCards = () => {
     if (currentSemesterCourses.length > 0) {
-      return currentSemesterCourses.map(course => {
+      return currentSemesterCourses.map((course) => {
         return (
           <DnDCard
             id={course.id}
@@ -156,15 +156,13 @@ const DnDBoard = forwardRef(({ id, semester, styleClass, setIsCourseModel }, ref
         )}
 
         {semesterId === DnDBoardType.UNASSIGNED ? (
-          <img
-            src={addSVG}
-            alt="add"
+          <AddSVG
             onClick={() => {
               setIsCourseModel(true);
             }}
           />
         ) : (
-          <img src={deleteSVG} alt="delete" onClick={deleteBoard} className={styles.delete} />
+          <DeleteSVG onClick={deleteBoard} className={styles.delete} />
         )}
       </div>
       <div className={styles.tileContainer}>

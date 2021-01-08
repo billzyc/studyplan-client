@@ -10,7 +10,7 @@ import styles from './DnDCard.module.scss';
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import copy from '../../data/copy.json';
 import { ReactComponent as DeleteSVG } from '../../assets/svgs/close.svg';
-import bookSVG from '../../assets/svgs/book.svg';
+import { ReactComponent as BookSVG } from '../../assets/svgs/book.svg';
 
 const DnDCard = ({ id, courseNumber, courseSubject, updateBoard, removeDraggedCard }) => {
   const [cookies] = useCookies(['token']);
@@ -21,25 +21,25 @@ const DnDCard = ({ id, courseNumber, courseSubject, updateBoard, removeDraggedCa
       url: `${API_ROUTES.COURSE_ITEMS}${id}`,
       baseURL: apiBaseUrl
     })
-      .then(response => {
+      .then((response) => {
         updateBoard();
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
         window.alert(copy.error.deleteCourse);
       });
   };
 
-  const dragStart = e => {
+  const dragStart = (e) => {
     const target = e.target;
     e.dataTransfer.setData('cardID', target.id);
   };
 
-  const dragOver = e => {
+  const dragOver = (e) => {
     e.stopPropagation();
   };
 
-  const dragEnd = e => {
+  const dragEnd = (e) => {
     e.stopPropagation();
     if (e.dataTransfer.dropEffect === 'move') {
       removeDraggedCard(id);
@@ -56,7 +56,7 @@ const DnDCard = ({ id, courseNumber, courseSubject, updateBoard, removeDraggedCa
       draggable="true"
     >
       <div className={classnames(styles.title)}>
-        <img src={bookSVG} alt="course" />
+        <BookSVG />
         <p>
           {courseSubject}-{courseNumber}
         </p>

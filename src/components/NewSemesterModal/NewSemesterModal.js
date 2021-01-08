@@ -22,7 +22,7 @@ function NewSemesterModal() {
 
   const dispatch = useDispatch();
 
-  const handleYearChange = e => {
+  const handleYearChange = (e) => {
     setSemesterYear(e.currentTarget.value);
   };
 
@@ -36,12 +36,12 @@ function NewSemesterModal() {
       url: API_ROUTES.SEMESTERS,
       baseURL: apiBaseUrl
     })
-      .then(response => {
+      .then((response) => {
         const data = response.data;
         dispatch(addSemester(data));
         dispatch(closeModal());
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
         window.alert(copy.error.newSemester);
       });
@@ -62,18 +62,22 @@ function NewSemesterModal() {
         <input
           type="text"
           id="year"
-          onChange={e => {
+          onChange={(e) => {
             handleYearChange(e);
           }}
           placeholder={copy.newSemesterModal.enterYear}
           value={semesterYear}
         />
-        <select id="semesters" onChange={e => setSemesterTerm(e.target.value)}>
+        <select id="semesters" onChange={(e) => setSemesterTerm(e.target.value)}>
           <option value={TERM_KEYS.FALL}>{TERM_KEYS.FALL}</option>
           <option value={TERM_KEYS.WINTER}>{TERM_KEYS.WINTER}</option>
           <option value={TERM_KEYS.SPRING}>{TERM_KEYS.SPRING}</option>
         </select>
-        <button onClick={() => handleNewSemesterSubmit()} className={styles.submit}>
+        <button
+          onClick={() => handleNewSemesterSubmit()}
+          className={`${styles.submit} ${semesterYear && semesterTerm ? false : styles.disabled}`}
+          disabled={semesterYear && semesterTerm ? false : true}
+        >
           {copy.newSemesterModal.submit}
         </button>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import checkProps from '@jam3/react-check-extra-props';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { useCookies } from 'react-cookie';
@@ -13,20 +13,21 @@ import copy from '../../data/copy.json';
 import { ROUTE_KEYS } from '../../data/consts';
 
 import styles from './UserLogin.module.scss';
-import loginSVG from '../../assets/svgs/login.svg';
+import { ReactComponent as LoginSVG } from '../../assets/svgs/login.svg';
 
 function UserLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [cookies, setCookie] = useCookies(['token']);
+  const router = useRouter();
 
   const dispatch = useDispatch();
 
-  const handleEmailChange = e => {
+  const handleEmailChange = (e) => {
     setEmail(e.currentTarget.value);
   };
 
-  const handlePasswordChange = e => {
+  const handlePasswordChange = (e) => {
     setPassword(e.currentTarget.value);
   };
 
@@ -40,7 +41,7 @@ function UserLogin() {
       url: API_ROUTES.LOGIN,
       baseURL: apiBaseUrl
     })
-      .then(function(response) {
+      .then(function (response) {
         const token = response.data.token;
         setCookie('token', `Token ${token}`, { path: '/' });
         axios({
@@ -49,17 +50,17 @@ function UserLogin() {
           url: API_ROUTES.PROFILE,
           baseURL: apiBaseUrl
         })
-          .then(async response => {
+          .then(async (response) => {
             const data = response.data;
             await dispatch(updateProfile(data[0]));
-            Router.push(ROUTE_KEYS.COURSES);
+            router.push(ROUTE_KEYS.COURSES);
           })
-          .catch(function(error) {
+          .catch(function (error) {
             window.alert(copy.error.fetchProfile);
             console.log(error);
           });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         window.alert(copy.error.login);
         console.log(error);
       });
@@ -67,13 +68,13 @@ function UserLogin() {
 
   return (
     <section className={classnames(styles.userLogin)}>
-      <div className={classnames(styles.signInContainer)}>
-        <img src={loginSVG} alt="login" />
-        <h2>Sign in</h2>
+      <div className={classnames(styles.logInContainer)}>
+        <LoginSVG className={styles.loginSVG} />
+        <h2>Log in</h2>
         <input
           type="email"
           id="email"
-          onChange={e => {
+          onChange={(e) => {
             handleEmailChange(e);
           }}
           placeholder={copy.login.emailInput}
@@ -81,7 +82,7 @@ function UserLogin() {
         />
         <input
           type="password"
-          onChange={e => {
+          onChange={(e) => {
             handlePasswordChange(e);
           }}
           placeholder={copy.login.passwordInput}

@@ -1,7 +1,19 @@
-Helps users easily plan their university courses.  
+Helps users easily plan their university courses.
 
-##Local development:  
-`git clone https://github.com/billzyc/studyplan-client.git`  
+##Download:  
+`git clone https://github.com/billzyc/studyplan-client.git`
+
+##Running Production Build:  
+`cd studyplan-client`  
+`npm start`
+
+##Creating Production Build:
+`cd studyplan-client`  
+`npm run build:prod:static`
+
+##Local Development:  
 `cd studyplan-client`  
 `npm install`  
-`npm run dev`  
+`npm run dev`
+
+Utilized Jam3 NextJS Generator for template

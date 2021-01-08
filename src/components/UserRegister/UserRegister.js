@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import checkProps from '@jam3/react-check-extra-props';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import axios from 'axios';
@@ -10,22 +10,23 @@ import copy from '../../data/copy.json';
 import { ROUTE_KEYS } from '../../data/consts';
 
 import styles from './UserRegister.module.scss';
-import registerSVG from '../../assets/svgs/register.svg';
+import { ReactComponent as RegisterSVG } from '../../assets/svgs/register.svg';
 
 function UserRegister() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const router = useRouter();
 
-  const handleEmailChange = e => {
+  const handleEmailChange = (e) => {
     setEmail(e.currentTarget.value);
   };
 
-  const handleNameChange = e => {
+  const handleNameChange = (e) => {
     setName(e.currentTarget.value);
   };
 
-  const handlePasswordChange = e => {
+  const handlePasswordChange = (e) => {
     setPassword(e.currentTarget.value);
   };
 
@@ -40,10 +41,10 @@ function UserRegister() {
       url: API_ROUTES.PROFILE,
       baseURL: apiBaseUrl
     })
-      .then(function(response) {
-        Router.push(ROUTE_KEYS.SIGN_IN);
+      .then(function (response) {
+        router.push(ROUTE_KEYS.SIGN_IN);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         window.alert(copy.error.register);
         console.log(error);
       });
@@ -52,13 +53,13 @@ function UserRegister() {
   return (
     <section className={classnames(styles.userRegister)}>
       <div className={classnames(styles.signUpContainer)}>
-        <img src={registerSVG} alt="register" />
+        <RegisterSVG className={styles.registerSVG} />
         <h2>Register</h2>
 
         <input
           type="text"
           id="name"
-          onChange={e => {
+          onChange={(e) => {
             handleNameChange(e);
           }}
           placeholder={copy.register.nameInput}
@@ -68,7 +69,7 @@ function UserRegister() {
           type="email"
           id="email"
           required
-          onChange={e => {
+          onChange={(e) => {
             handleEmailChange(e);
           }}
           className={styles.emailInput}
@@ -77,7 +78,7 @@ function UserRegister() {
         />
         <input
           type="password"
-          onChange={e => {
+          onChange={(e) => {
             handlePasswordChange(e);
           }}
           placeholder={copy.register.passwordInput}

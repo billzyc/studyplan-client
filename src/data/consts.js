@@ -24,7 +24,7 @@ export const MODAL_KEYS = {
 };
 
 export const ROUTE_KEYS = {
-  SIGN_IN: '/signin',
+  LOGIN: '/login',
   COURSES: '/courses'
 };
 

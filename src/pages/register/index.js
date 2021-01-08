@@ -21,7 +21,7 @@ function Register({ copy }) {
   return (
     <>
       <Head>
-        <title>Home | Jam3 generator</title>
+        <title>Register | Course Planner</title>
       </Head>
       <section className={classnames(styles.login)}>
         <Navbar />

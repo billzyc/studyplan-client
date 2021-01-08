@@ -9,7 +9,6 @@
 
   h4 {
     width: $inputWidth;
-    color: $grey;
     margin-bottom: px(15);
   }
 
@@ -36,9 +35,8 @@
       margin-bottom: px(15);
       text-indent: px(10);
       border: solid 1px;
-      border-color: $tan;
+      border-color: lightgrey;
       border-radius: px(5);
-      color: $grey;
       background-color: transparent;
     }
 
@@ -46,12 +44,11 @@
       width: $inputWidth;
       height: px(50);
       color: $white;
-      background-color: $tan;
+      background-color: $green;
       border-radius: px(5);
-
-      &:hover {
-        color: $white;
-      }
+    }
+    .disabled {
+      background-color: lightgrey;
     }
   }
 }

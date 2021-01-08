@@ -13,13 +13,13 @@
 /coverage
 
 # next.js
-/.next/
 /out/
 
 # production
 /build
 
 # misc
+.idea
 .vscode
 .DS_Store
 *.log*

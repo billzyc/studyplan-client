@@ -19,11 +19,11 @@ const NewCourseModal = ({ unassignedBoardRef, fetchAllCourses, closeCourseModal 
 
   const dispatch = useDispatch();
 
-  const handleNewCourseSubject = e => {
+  const handleNewCourseSubject = (e) => {
     setNewCourseSubject(e.currentTarget.value);
   };
 
-  const handleNewCourseNumber = e => {
+  const handleNewCourseNumber = (e) => {
     setNewCourseNumber(e.currentTarget.value);
   };
 
@@ -50,14 +50,14 @@ const NewCourseModal = ({ unassignedBoardRef, fetchAllCourses, closeCourseModal 
       url: API_ROUTES.COURSE_ITEMS,
       baseURL: apiBaseUrl
     })
-      .then(function(response) {
+      .then(function (response) {
         fetchAllCourses();
         unassignedBoardRef.current.updateCourses();
         setNewCourseSubject('');
         setNewCourseNumber('');
         closeCourseModal();
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
         window.alert(copy.error.newCourse);
       });
@@ -78,7 +78,7 @@ const NewCourseModal = ({ unassignedBoardRef, fetchAllCourses, closeCourseModal 
         <input
           type="text"
           id="courseSubject"
-          onChange={e => {
+          onChange={(e) => {
             handleNewCourseSubject(e);
           }}
           placeholder={copy.newCourseModal.courseInput}
@@ -87,13 +87,17 @@ const NewCourseModal = ({ unassignedBoardRef, fetchAllCourses, closeCourseModal 
         <input
           type="text"
           id="courseNumber"
-          onChange={e => {
+          onChange={(e) => {
             handleNewCourseNumber(e);
           }}
           placeholder={copy.newCourseModal.numberInput}
           value={newCourseNumber}
         />
-        <button onClick={handleNewCourseSubmit} className={styles.submit}>
+        <button
+          onClick={handleNewCourseSubmit}
+          className={`${styles.submit} ${newCourseSubject && newCourseNumber ? false : styles.disabled}`}
+          disabled={newCourseSubject && newCourseNumber ? false : true}
+        >
           {copy.newCourseModal.submit}
         </button>
       </div>

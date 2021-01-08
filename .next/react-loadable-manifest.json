@@ -1,0 +1,626 @@
+{
+  "../../components/CoursePlanner/CoursePlanner": [
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/index.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/adapters/xhr.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/axios.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/cancel/Cancel.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/cancel/CancelToken.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/cancel/isCancel.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/Axios.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/InterceptorManager.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/buildFullPath.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/createError.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/dispatchRequest.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/enhanceError.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/mergeConfig.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/settle.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/transformData.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/defaults.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/bind.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/buildURL.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/combineURLs.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/cookies.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/isAbsoluteURL.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/isAxiosError.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/isURLSameOrigin.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/normalizeHeaderName.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/parseHeaders.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/spread.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/utils.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/CoursePlanner/CoursePlanner.module.scss",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/DnDBoard/DnDBoard.module.scss",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/DnDCard/DnDCard.module.scss",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/NewCourseModal/NewCourseModal.module.scss",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/process/browser.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/components/CoursePlanner/CoursePlanner.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/components/CoursePlanner/CoursePlanner.module.scss",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/components/DnDBoard/DnDBoard.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/components/DnDBoard/DnDBoard.module.scss",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/components/DnDCard/DnDCard.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/components/DnDCard/DnDCard.module.scss",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/components/NewCourseModal/NewCourseModal.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/components/NewCourseModal/NewCourseModal.module.scss",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/data/consts.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/data/copy.json",
+      "file": "static/chunks/1.js"
+    }
+  ],
+  "../../components/ModalPortal/ModalPortal": [
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/index.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/adapters/xhr.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/axios.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/cancel/Cancel.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/cancel/CancelToken.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/cancel/isCancel.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/Axios.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/InterceptorManager.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/buildFullPath.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/createError.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/dispatchRequest.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/enhanceError.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/mergeConfig.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/settle.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/transformData.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/defaults.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/bind.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/buildURL.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/combineURLs.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/cookies.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/isAbsoluteURL.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/isAxiosError.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/isURLSameOrigin.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/normalizeHeaderName.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/parseHeaders.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/spread.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/utils.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/ModalPortal/ModalPortal.module.scss",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/NewCourseModal/NewCourseModal.module.scss",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/NewSemesterModal/NewSemesterModal.module.scss",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/process/browser.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./src/components/ModalPortal/ModalPortal.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./src/components/ModalPortal/ModalPortal.module.scss",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./src/components/NewCourseModal/NewCourseModal.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./src/components/NewCourseModal/NewCourseModal.module.scss",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./src/components/NewSemesterModal/NewSemesterModal.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./src/components/NewSemesterModal/NewSemesterModal.module.scss",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./src/data/consts.js",
+      "file": "static/chunks/2.js"
+    },
+    {
+      "id": "./src/data/copy.json",
+      "file": "static/chunks/2.js"
+    }
+  ],
+  "../../components/Navbar/Navbar": [
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/objectDestructuringEmpty.js",
+      "file": "static/chunks/3.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/Navbar/Navbar.module.scss",
+      "file": "static/chunks/3.js"
+    },
+    {
+      "id": "./src/components/Navbar/Navbar.js",
+      "file": "static/chunks/3.js"
+    },
+    {
+      "id": "./src/components/Navbar/Navbar.module.scss",
+      "file": "static/chunks/3.js"
+    }
+  ],
+  "../../components/UserLogin/UserLogin": [
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/index.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/adapters/xhr.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/axios.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/cancel/Cancel.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/cancel/CancelToken.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/cancel/isCancel.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/Axios.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/InterceptorManager.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/buildFullPath.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/createError.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/dispatchRequest.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/enhanceError.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/mergeConfig.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/settle.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/core/transformData.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/defaults.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/bind.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/buildURL.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/combineURLs.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/cookies.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/isAbsoluteURL.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/isAxiosError.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/isURLSameOrigin.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/normalizeHeaderName.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/parseHeaders.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/helpers/spread.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/axios/lib/utils.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/client/normalize-trailing-slash.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/client/router.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/client/with-router.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/compiled/path-to-regexp/index.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/mitt.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router-context.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router/router.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router/utils/escape-path-delimiters.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router/utils/is-dynamic.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router/utils/parse-relative-url.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router/utils/path-match.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router/utils/prepare-destination.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router/utils/resolve-rewrites.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router/utils/route-matcher.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/lib/router/utils/route-regex.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/dist/next-server/server/denormalize-page-path.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/@babel/runtime/helpers/construct.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/@babel/runtime/helpers/interopRequireWildcard.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/UserLogin/UserLogin.module.scss",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./node_modules/process/browser.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./src/components/UserLogin/UserLogin.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./src/components/UserLogin/UserLogin.module.scss",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./src/data/consts.js",
+      "file": "static/chunks/4.js"
+    },
+    {
+      "id": "./src/data/copy.json",
+      "file": "static/chunks/4.js"
+    }
+  ],
+  "../components/Unsupported/Unsupported": [
+    {
+      "id": "./node_modules/next/node_modules/css-loader/dist/cjs.js?!./node_modules/next/dist/compiled/postcss-loader/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/next/node_modules/sass-loader/dist/cjs.js?!./src/components/Unsupported/Unsupported.module.scss",
+      "file": "static/chunks/Unsupported.js"
+    },
+    {
+      "id": "./src/components/Unsupported/Unsupported.js",
+      "file": "static/chunks/Unsupported.js"
+    },
+    {
+      "id": "./src/components/Unsupported/Unsupported.module.scss",
+      "file": "static/chunks/Unsupported.js"
+    }
+  ],
+  "./dev/noop": [
+    {
+      "id": "./node_modules/next/dist/client/dev/noop.js",
+      "file": "static/chunks/0.js"
+    }
+  ]
+}

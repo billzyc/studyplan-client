@@ -1,37 +1,14 @@
 const path = require('path');
 
 require('dotenv').config({
-  path: path.resolve(process.cwd(), `.env.${process.env.BUILD_ENV || process.env.NODE_ENV}`)
+  path: path.resolve(process.cwd(), `.env.${process.env.CI_ENV || process.env.NODE_ENV}`)
 });
 
-// const fetch = require('isomorphic-unfetch');
 const withPlugins = require('next-compose-plugins');
-const { PHASE_PRODUCTION_BUILD } = require('next-server/constants');
-const withCSS = require('@zeit/next-css');
-const withSass = require('@zeit/next-sass');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const optimizedImages = require('next-optimized-images');
-const withFonts = require('next-fonts');
-const withOffline = require('next-offline');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.BUNDLE_ANALYZE === 'true'
 });
-
-const withOfflineSW = {
-  transformManifest: manifest => ['/'].concat(manifest)
-};
-
-const withSassConfig = {
-  cssModules: true,
-  cssLoaderOptions: {
-    localIdentName: '[local]_[hash:base64:5]' // [path]___[local]___[hash:base64:5]
-  },
-  [PHASE_PRODUCTION_BUILD]: {
-    cssLoaderOptions: {
-      localIdentName: '[hash:base64:8]'
-    }
-  }
-};
 
 const optimizedImagesConfig = {
   inlineImageLimit: 1,
@@ -61,63 +38,38 @@ const optimizedImagesConfig = {
 };
 
 const nextJSConfig = {
-  env: {
-    WEBSITE_SITE_URL: process.env.WEBSITE_SITE_URL,
-    BUNDLE_ANALYZE: process.env.BUNDLE_ANALYZE === 'true',
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
-    CUSTOM_ENV: process.env.CUSTOM_ENV
-  },
-  exportTrailingSlash: true,
-  // compress: true, // NOTE: enable this when doing SSR
+  trailingSlash: true,
+  compress: false, // NOTE: enable this when doing SSR
   devIndicators: {
     autoPrerender: false
   },
   experimental: {
     modern: true
   },
-  webpack: function(config, options) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: [
-        {
-          loader: `@svgr/webpack`,
-          options: {
-            prettier: true,
-            svgo: true,
-            svgoConfig: {
-              removeViewBox: true,
-              cleanupIDs: true
-            }
-          }
-        },
-        'url-loader'
-      ]
-    });
+  webpack: function (config, options) {
+    const moduleSassRule = config.module.rules[1].oneOf.find(
+      (rule) => rule.test.toString() === /\.module\.(scss|sass)$/.toString()
+    );
 
-    if (config.mode === 'production') {
-      if (Array.isArray(config.optimization.minimizer)) {
-        config.optimization.minimizer.push(
-          new OptimizeCSSAssetsPlugin({
-            cssProcessorPluginOptions: {
-              preset: ['default', { discardComments: { removeAll: true } }]
-            }
-          })
-        );
-      }
+    if (moduleSassRule) {
+      const cssLoader = moduleSassRule.use.find(({ loader }) => loader.includes('css-loader'));
+      if (cssLoader) cssLoader.options.modules.mode = 'local';
+    }
+
+    if (options.dev) {
+      config.module.rules.push({
+        test: /.\/src\/.*\/.*.js$/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'eslint-loader'
+          }
+        ]
+      });
     }
 
     return config;
   }
 };
 
-module.exports = withPlugins(
-  [
-    [withCSS],
-    [withSass, withSassConfig],
-    [withFonts],
-    [withOffline, withOfflineSW],
-    [optimizedImages, optimizedImagesConfig],
-    [withBundleAnalyzer]
-  ],
-  nextJSConfig
-);
+module.exports = withPlugins([[optimizedImages, optimizedImagesConfig], [withBundleAnalyzer]], nextJSConfig);
