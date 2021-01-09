@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from 'react';
+import React, { useRef, useCallback, useEffect , useLayoutEffect} from 'react';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import { gsap } from 'gsap';
@@ -30,6 +30,10 @@ function Landing() {
   useEffect(() => {
     animateIn();
   }, [animateIn]);
+
+  useLayoutEffect(() => {
+    
+  }, []);
 
   return (
     <section className={styles.Landing}>

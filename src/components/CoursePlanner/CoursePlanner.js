@@ -20,7 +20,6 @@ import copy from '../../data/copy.json';
 function CoursePlanner() {
   const unassignedBoardRef = useRef();
   const [isCourseModalOpen, setIsCourseModel] = useState(false);
-  const [callSuccess, setCallSuccess] = useState(false);
   const [cookies] = useCookies(['token']);
   const dispatch = useDispatch();
   const { semesterInfo } = useSelector((state) => state);
@@ -62,7 +61,6 @@ function CoursePlanner() {
       .then((response) => {
         const data = response.data;
         dispatch(replaceCourse(data));
-        setCallSuccess(true);
       })
       .catch(function (error) {
         console.log(error);
@@ -90,18 +88,18 @@ function CoursePlanner() {
       });
     }
   };
-  useLayoutEffect(() => {
-    const callAPIs = async () => {
-      await fetchSavedSemesters();
-      await fetchAllCourses();
-    };
-    callAPIs();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useLayoutEffect(() => {
+  //   const callAPIs = async () => {
+  //     await fetchSavedSemesters();
+  //     await fetchAllCourses();
+  //   };
+  //   callAPIs();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   //TODO: Move NewCourseModal to ModalPortal and move semester info into redux
 
-  return callSuccess ? (
+  return semesterInfo ? (
     <section className={classnames(styles.coursePlanner)}>
       {isCourseModalOpen ? (
         <NewCourseModal
