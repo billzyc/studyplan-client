@@ -1,4 +1,4 @@
-const defaultState = [];
+const defaultState = null;
 
 // Reducer
 export default function reducer(state = defaultState, action) {
@@ -13,7 +13,6 @@ export default function reducer(state = defaultState, action) {
 
 // Action Creators
 export function replaceCourse(courseInfo) {
-  console.log(courseInfo);
   return {
     type: 'replaceCurrentCourse',
     courseInfo: courseInfo

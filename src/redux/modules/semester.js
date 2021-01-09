@@ -1,4 +1,4 @@
-const defaultState = [];
+const defaultState = null;
 
 function compareSemesters(a, b) {
   const semesterA = a.semester_code;
@@ -17,10 +17,17 @@ function compareSemesters(a, b) {
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case 'replaceCurrentSemester':
-      return action.semesterInfo.sort(compareSemesters);
+      if (action.semesterInfo) {
+        return action.semesterInfo.sort(compareSemesters);
+      }
+      return null;
 
     case 'addSemester':
-      return [...state, action.semesterInfo].sort(compareSemesters);
+      if (state) {
+        return [...state, action.semesterInfo].sort(compareSemesters);
+      } else {
+        return [action.semesterInfo].sort(compareSemesters);
+      }
 
     default:
       return state;

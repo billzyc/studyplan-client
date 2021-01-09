@@ -3,23 +3,14 @@ import checkProps from '@jam3/react-check-extra-props';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
 
 import { withRedux } from '../../redux/withRedux';
-import styles from './Courses.module.scss';
+import styles from './CoursesContainer.module.scss';
+import CoursePlanner from '../CoursePlanner/CoursePlanner';
+import ModalPortal from '../ModalPortal/ModalPortal';
+import Navbar from '../Navbar/Navbar';
 
-function Courses({ copy }) {
-  const CoursePlanner = dynamic(() => import('../../components/CoursePlanner/CoursePlanner'), {
-    ssr: false
-  });
-
-  const Navbar = dynamic(() => import('../../components/Navbar/Navbar'), {
-    ssr: false
-  });
-
-  const ModalPortal = dynamic(() => import('../../components/ModalPortal/ModalPortal'), {
-    ssr: false
-  });
+function CoursesContainer({ copy }) {
   return (
     <>
       <Head>
@@ -36,7 +27,7 @@ function Courses({ copy }) {
   );
 }
 
-Courses.propTypes = checkProps({
+CoursesContainer.propTypes = checkProps({
   copy: PropTypes.object
 });
 
@@ -50,4 +41,4 @@ Courses.propTypes = checkProps({
 //   };
 // }
 
-export default withRedux(Courses);
+export default withRedux(CoursesContainer);
