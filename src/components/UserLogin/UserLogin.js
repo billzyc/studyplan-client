@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import checkProps from '@jam3/react-check-extra-props';
 import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { useCookies } from 'react-cookie';
-import axios from 'axios';
 
 import { useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/modules/profile';
 import { replaceSemester } from '../../redux/modules/semester';
 import { replaceCourse } from '../../redux/modules/course';
-import { API_ROUTES, apiBaseUrl, ROUTE_KEYS } from '../../data/consts';
 import copy from '../../data/copy.json';
-import { fetchAllUserData } from '../../utils/api/getUserData';
+import { fetchUserDataFromLogin } from '../../utils/api/getUserData';
 
 import styles from './UserLogin.module.scss';
 import { ReactComponent as LoginSVG } from '../../assets/svgs/login.svg';
@@ -34,7 +31,7 @@ function UserLogin() {
   };
 
   const onLoginSubmit = () => {
-    fetchAllUserData(
+    fetchUserDataFromLogin(
       email,
       password,
       setCookie,

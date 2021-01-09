@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { API_ROUTES, apiBaseUrl, ROUTE_KEYS } from '../../data/consts';
 
-
-
-const fetchSavedSemesters = (cookies, dispatch, replaceSemester, router) => {
+export const fetchSavedSemesters = (cookies, dispatch, replaceSemester, router) => {
   axios({
     method: 'get',
     headers: { authorization: cookies.token },
@@ -20,7 +18,7 @@ const fetchSavedSemesters = (cookies, dispatch, replaceSemester, router) => {
     });
 };
 
-const fetchAllCourses = (cookies, dispatch, replaceCourse, router) => {
+export const fetchAllCourses = (cookies, dispatch, replaceCourse, router) => {
   axios({
     method: 'get',
     headers: { authorization: cookies.token },
@@ -35,6 +33,23 @@ const fetchAllCourses = (cookies, dispatch, replaceCourse, router) => {
       console.log(error);
       router.push('/');
     });
+};
+
+export const fetchUserDataFromCookie = async (cookies, dispatch, updateProfile) => {
+  const response = await axios({
+    method: 'get',
+    headers: { Authorization: cookies.token },
+    url: API_ROUTES.PROFILE,
+    baseURL: apiBaseUrl
+  });
+  const data = response.data;
+  if (data.length > 0) {
+    await dispatch(updateProfile(data[0]));
+    return true;
+  } else {
+    console.log('login error');
+    return false;
+  }
 };
 
 export const login = (email, password, setCookie, dispatch, updateProfile, router) => {
@@ -72,7 +87,7 @@ export const login = (email, password, setCookie, dispatch, updateProfile, route
     });
 };
 
-export const fetchAllUserData = (
+export const fetchUserDataFromLogin = (
   email,
   password,
   setCookie,
