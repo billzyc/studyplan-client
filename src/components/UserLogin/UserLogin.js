@@ -42,16 +42,17 @@ function UserLogin() {
       baseURL: apiBaseUrl
     })
       .then(function (response) {
-        const token = response.data.token;
-        setCookie('token', `Token ${token}`, { path: '/' });
+        const token = `Token ${response.data.token}` ;
+        setCookie('token', token, { path: '/' });
         axios({
           method: 'get',
-          headers: { authorization: cookies.token },
+          headers: { Authorization: token },
           url: API_ROUTES.PROFILE,
           baseURL: apiBaseUrl
         })
           .then(async (response) => {
             const data = response.data;
+            console.log(response);
             await dispatch(updateProfile(data[0]));
             router.push(ROUTE_KEYS.COURSES);
           })

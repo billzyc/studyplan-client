@@ -26,7 +26,7 @@ function CoursePlanner() {
   const { semesterInfo } = useSelector((state) => state);
   const router = useRouter();
 
-  console.log(semesterInfo);
+  //TODO: refactor
   const handleModalPortal = useCallback(() => {
     if (Object.keys(semesterInfo).length === 0) {
       dispatch(openModal(MODAL_KEYS.NEW_SEMESTER));

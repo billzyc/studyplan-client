@@ -3,15 +3,17 @@
 .navbar {
   position: relative;
   @include position-0;
-  @include flex-center-vert;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   height: $navbar-height-mobile;
   width: 100%;
   background-color: $green;
 
-  .hamburgerButton {
-    position: absolute;
-    right: px(30);
-    height: px(20);
-    width: px(25);
+    .logOut {
+      margin-right: 20px;
+      padding: 12px;
+      border-radius: 10px;
+      background-color: white;
   }
 }
