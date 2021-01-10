@@ -7,7 +7,7 @@ function Error({ statusCode }) {
   return (
     <section className="Error">
       <Head>
-        <title>Course Planner</title>
+        <title>Error | Study Plan</title>
       </Head>
 
       <Cross />

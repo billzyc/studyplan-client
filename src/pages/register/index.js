@@ -21,7 +21,7 @@ function Register({ copy }) {
   return (
     <>
       <Head>
-        <title>Register | Course Planner</title>
+        <title>Register | Study Plan</title>
       </Head>
       <section className={classnames(styles.login)}>
         <Navbar />

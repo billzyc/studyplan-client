@@ -27,8 +27,11 @@ function App({ Component, pageProps }) {
           Boolean(className)
         );
         document.body.className = [...document.body.className.split(' '), ...classes].filter(Boolean).join(' ');
+
+        if (device.isMobile) {
+          setIsSupported(false);
+        }
       } else {
-        setIsSupported(false);
       }
     }
   }, []);
@@ -43,19 +46,9 @@ function App({ Component, pageProps }) {
   return (
     <Layout>
       <Head>
-        <title>Course Planner</title>
+        <title>Study Plan</title>
         <meta name="description" content="University study planner" />
         <meta name="keywords" content="course planner,waterloo, study, university, schedule, App, React" />
-        {/* Generate favicons in https://realfavicongenerator.net */}
-        <meta name="theme-color" content="#ffffff" />
-        <meta name="msapplication-TileColor" content="#ffffff" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-        {/* <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" /> */}
-        <link rel="manifest" href="/favicons/site.webmanifest" />
-        <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#000000" />
-        <link rel="shortcut icon" href="/favicons/favicon.ico" />
-        <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
         {/* Share meta tags */}
         <meta property="og:locale" content="en_US" />
         <meta property="og:title" content="Default title" />

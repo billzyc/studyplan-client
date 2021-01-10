@@ -21,7 +21,7 @@ function Login({ copy }) {
   return (
     <>
       <Head>
-        <title>Login | Course Planner</title>
+        <title>Login | Study Plan</title>
       </Head>
       <section className={classnames(styles.login)}>
         <Navbar />

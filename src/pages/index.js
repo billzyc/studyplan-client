@@ -72,7 +72,7 @@ function Landing() {
   return app.landingLoaded ? (
     <section className={styles.Landing}>
       <Head>
-        <title>Course Planner</title>
+        <title>Landing | Study Plan</title>
       </Head>
       <h1>My Study Plan</h1>
       <p>Easily visualize and plan your university courses with kanban boards! </p>

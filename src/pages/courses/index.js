@@ -24,7 +24,7 @@ function Courses({ copy }) {
   return (
     <>
       <Head>
-        <title>Course Planner</title>
+        <title>Course Planner | Study Plan</title>
       </Head>
       <section className={classnames(styles.courses)}>
         <ModalPortal />
