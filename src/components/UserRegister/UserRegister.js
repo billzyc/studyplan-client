@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import axios from 'axios';
+import Link from 'next/link';
 
 import { API_ROUTES, apiBaseUrl } from '../../data/consts';
 import copy from '../../data/copy.json';
@@ -30,7 +31,7 @@ function UserRegister() {
     setPassword(e.currentTarget.value);
   };
 
-  const onLoginSubmit = () => {
+  const onRegisterSubmit = () => {
     axios({
       method: 'post',
       data: {
@@ -41,12 +42,16 @@ function UserRegister() {
       url: API_ROUTES.PROFILE,
       baseURL: apiBaseUrl
     })
-      .then(function (response) {
-        router.push(ROUTE_KEYS.SIGN_IN);
+      .then(function () {
+        router.push(ROUTE_KEYS.LOGIN);
       })
       .catch(function (error) {
-        window.alert(copy.error.register);
-        console.log(error);
+        console.log(error.response);
+        if (error?.response?.data && Object.keys(error?.response?.data).length > 0) {
+          window.alert(`${Object.keys(error.response.data)[0]}: ${Object.values(error.response.data)[0]}`);
+        } else {
+          window.alert(copy.error.register);
+        }
       });
   };
 
@@ -84,7 +89,12 @@ function UserRegister() {
           placeholder={copy.register.passwordInput}
           value={password}
         />
-        <input type="submit" onClick={onLoginSubmit} className={styles.submit} value={copy.register.submit} />
+        <input type="submit" onClick={onRegisterSubmit} className={styles.submit} value={copy.register.submit} />
+
+        <p>Already got an account?</p>
+        <Link href="/login">
+          <a className={styles.links}>Login</a>
+        </Link>
       </div>
     </section>
   );

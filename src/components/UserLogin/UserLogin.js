@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import classnames from 'classnames';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import Link from 'next/link';
 
 import { useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/modules/profile';
@@ -86,9 +87,11 @@ function UserLogin() {
           placeholder={copy.login.passwordInput}
           value={password}
         />
-        <button onClick={onLoginSubmit} className={styles.submit}>
-          {copy.login.submit}
-        </button>
+        <input type="submit" onClick={onLoginSubmit} className={styles.submit} value={copy.login.submit} />
+        <p>Need an account?</p>
+        <Link href="/register">
+          <a className={styles.links}>Register</a>
+        </Link>
       </div>
     </section>
   );

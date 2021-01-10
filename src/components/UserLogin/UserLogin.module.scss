@@ -44,6 +44,10 @@
       background-color: $green;
       border-radius: px(5);
     }
+
+    .links {
+      color: $green;
+    }
   }
 
   @include breakpoint(desktopSm) {

@@ -27,14 +27,18 @@ function Navbar() {
     await removeCookie('token', { path: '/' });
     router.push('/');
   };
-  return profile?.id && profile?.email ? (
+  return (
     <section className={classnames(styles.navbar)}>
-      <h4>{profile.name}'s Course Plan</h4>
-      <button onClick={logOut} className={classnames(styles.logOut)}>
-        Log Out
-      </button>
+      {profile?.id && profile?.email ? (
+        <>
+          <h4>{profile.name}'s Course Plan</h4>
+          <button onClick={logOut} className={classnames(styles.logOut)}>
+            Log Out
+          </button>{' '}
+        </>
+      ) : null}
     </section>
-  ) : null;
+  );
 }
 
 Navbar.propTypes = checkProps({
