@@ -4,11 +4,15 @@
   position: relative;
   @include position-0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   height: $navbar-height-mobile;
   width: 100%;
   background-color: $green;
+
+  h4{
+    margin-left: 20px;
+  }
 
     .logOut {
       margin-right: 20px;

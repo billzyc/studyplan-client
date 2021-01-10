@@ -20,6 +20,7 @@ function Courses({ copy }) {
   const ModalPortal = dynamic(() => import('../../components/ModalPortal/ModalPortal'), {
     ssr: false
   });
+
   return (
     <>
       <Head>

@@ -22,6 +22,9 @@ export default function reducer(state = defaultState, action) {
     case 'addSemester':
       return [...state, action.semesterInfo].sort(compareSemesters);
 
+    case 'removeSemester':
+      return [];
+
     default:
       return state;
   }
@@ -39,5 +42,11 @@ export function addSemester(semesterInfo) {
   return {
     type: 'addSemester',
     semesterInfo: semesterInfo
+  };
+}
+
+export function removeSemester() {
+  return {
+    type: 'removeSemester'
   };
 }

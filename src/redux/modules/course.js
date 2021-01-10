@@ -6,6 +6,9 @@ export default function reducer(state = defaultState, action) {
     case 'replaceCurrentCourse':
       return action.courseInfo;
 
+    case 'removeCourse':
+      return [];
+
     default:
       return state;
   }
@@ -13,9 +16,14 @@ export default function reducer(state = defaultState, action) {
 
 // Action Creators
 export function replaceCourse(courseInfo) {
-  console.log(courseInfo);
   return {
     type: 'replaceCurrentCourse',
     courseInfo: courseInfo
+  };
+}
+
+export function removeCourse() {
+  return {
+    type: 'removeCourse'
   };
 }

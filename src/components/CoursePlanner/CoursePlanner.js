@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef, useLayoutEffect } from 'react';
+import React, { useState, useCallback, useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { useRouter } from 'next/router';
@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import Loader from 'react-loader-spinner';
 
 import styles from './CoursePlanner.module.scss';
 
@@ -14,15 +15,15 @@ import NewCourseModal from '../NewCourseModal/NewCourseModal';
 import { API_ROUTES, apiBaseUrl, MODAL_KEYS } from '../../data/consts';
 import { replaceSemester } from '../../redux/modules/semester';
 import { replaceCourse } from '../../redux/modules/course';
+import { updateCoursesLoaded } from '../../redux/modules/app';
 import { openModal, closeModal } from '../../redux/modules/modal';
-import copy from '../../data/copy.json';
 
 function CoursePlanner() {
   const unassignedBoardRef = useRef();
   const [isCourseModalOpen, setIsCourseModel] = useState(false);
   const [cookies] = useCookies(['token']);
   const dispatch = useDispatch();
-  const { semesterInfo } = useSelector((state) => state);
+  const { semesterInfo, profile, app } = useSelector((state) => state);
   const router = useRouter();
 
   //TODO: refactor
@@ -88,18 +89,23 @@ function CoursePlanner() {
       });
     }
   };
-  // useLayoutEffect(() => {
-  //   const callAPIs = async () => {
-  //     await fetchSavedSemesters();
-  //     await fetchAllCourses();
-  //   };
-  //   callAPIs();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useLayoutEffect(() => {
+    const callAPIs = async () => {
+      fetchSavedSemesters();
+      fetchAllCourses();
+      dispatch(updateCoursesLoaded(true));
+    };
+    if (profile?.email && profile?.id) {
+      callAPIs();
+    } else {
+      router.push('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //TODO: Move NewCourseModal to ModalPortal and move semester info into redux
 
-  return semesterInfo ? (
+  return app.coursesLoaded ? (
     <section className={classnames(styles.coursePlanner)}>
       {isCourseModalOpen ? (
         <NewCourseModal
@@ -129,7 +135,10 @@ function CoursePlanner() {
         />
       </div>
     </section>
-  ) : null;
+  ) :  <Loader type="Rings" color="#00BFFF" height={80} width={80} 
+  timeout={3000} 
+
+/>;
 }
 
 CoursePlanner.propTypes = checkProps({});

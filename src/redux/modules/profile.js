@@ -6,6 +6,9 @@ export default function reducer(state = defaultState, action) {
     case 'update':
       return { ...state, ...action.profileInfo };
 
+    case 'remove':
+      return {};
+
     default:
       return state;
   }
@@ -13,9 +16,14 @@ export default function reducer(state = defaultState, action) {
 
 // Action Creators
 export function updateProfile(profileInfo) {
-  console.log(profileInfo);
   return {
     type: 'update',
     profileInfo: profileInfo
+  };
+}
+
+export function removeProfile() {
+  return {
+    type: 'remove'
   };
 }
