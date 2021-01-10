@@ -74,6 +74,7 @@ export const login = (email, password, setCookie, dispatch, updateProfile, route
         .then(async (response) => {
           const data = response.data;
           await dispatch(updateProfile(data[0]));
+          router.push(ROUTE_KEYS.COURSES);
         })
         .catch(function (error) {
           window.alert('Unable to fetch profile information');
@@ -120,6 +121,7 @@ export const fetchUserDataFromLogin = (
           await dispatch(updateProfile(data[0]));
           fetchSavedSemesters(cookies, dispatch, replaceSemester, router);
           fetchAllCourses(cookies, dispatch, replaceCourse, router);
+          router.push(ROUTE_KEYS.COURSES);
         })
         .catch(function (error) {
           window.alert('Unable to fetch profile information');

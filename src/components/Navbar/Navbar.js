@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { replaceSemester } from '../../redux/modules/semester';
 import { replaceCourse } from '../../redux/modules/course';
-import { updateProfile } from '../../redux/modules/profile';
 
 import styles from './Navbar.module.scss';
 
@@ -17,9 +16,8 @@ function Navbar({}) {
   const router = useRouter();
 
   const logOut = () => {
-    dispatch(replaceSemester(null));
-    dispatch(replaceCourse(null));
-    dispatch(updateProfile(null));
+    dispatch(replaceSemester([]));
+    dispatch(replaceCourse([]));
     setCookie('token', '', { path: '/' });
     router.push('/');
   };

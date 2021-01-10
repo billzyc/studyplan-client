@@ -15,11 +15,8 @@
   .title {
     display: flex;
     align-items: center;
-p{
-  padding: 0;
-}
-    .book {
-      @include box(30px);
+
+    img {
       padding-right: 10px;
     }
   }

@@ -56,7 +56,7 @@ const DnDCard = ({ id, courseNumber, courseSubject, updateBoard, removeDraggedCa
       draggable="true"
     >
       <div className={classnames(styles.title)}>
-        <BookSVG className={classnames(styles.book)}/>
+        <BookSVG />
         <p>
           {courseSubject}-{courseNumber}
         </p>
