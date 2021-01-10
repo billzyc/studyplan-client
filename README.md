@@ -9,11 +9,11 @@ Back end developed with Python, Django, Django Rest Framework and Vagrant. Back 
 
 `git clone https://github.com/billzyc/studyplan-client.git`
 
-## Running Production Build:
+## Running Production Build Local Build:
 
 `cd studyplan-client`  
 `npm install`  
-`npm start`
+`npm run prod`
 
 ## Local Development:
 

@@ -12,7 +12,10 @@
   },
   "scripts": {
     "dev": "cross-env BUILD_ENV=development next dev",
-    "start": "next build && next export && cross-env CI_ENV=production npm-run-all && next start",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "\n ######################  NPM Secondary Pipeline  ######################": "",
     "build:ssr": "next build",
     "build:prod:static": "next build && next export && cross-env CI_ENV=production npm-run-all",
