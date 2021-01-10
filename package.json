@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "cross-env BUILD_ENV=development next dev",
-    "start": "next start",
+    "start": "next build && next export && cross-env CI_ENV=production npm-run-all && next start",
     "\n ######################  NPM Secondary Pipeline  ######################": "",
     "build:ssr": "next build",
     "build:prod:static": "next build && next export && cross-env CI_ENV=production npm-run-all",
