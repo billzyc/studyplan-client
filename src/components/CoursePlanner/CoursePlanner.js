@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useRef, useLayoutEffect } from 'react';
-import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { useRouter } from 'next/router';
 import classnames from 'classnames';
@@ -16,7 +15,7 @@ import { API_ROUTES, apiBaseUrl, MODAL_KEYS } from '../../data/consts';
 import { replaceSemester } from '../../redux/modules/semester';
 import { replaceCourse } from '../../redux/modules/course';
 import { updateCoursesLoaded } from '../../redux/modules/app';
-import { openModal, closeModal } from '../../redux/modules/modal';
+import { openModal } from '../../redux/modules/modal';
 
 function CoursePlanner() {
   const unassignedBoardRef = useRef();
@@ -26,14 +25,14 @@ function CoursePlanner() {
   const { semesterInfo, profile, app } = useSelector((state) => state);
   const router = useRouter();
 
-  //TODO: refactor
-  const handleModalPortal = useCallback(() => {
-    if (Object.keys(semesterInfo).length === 0) {
-      dispatch(openModal(MODAL_KEYS.NEW_SEMESTER));
-    } else {
-      dispatch(closeModal());
-    }
-  }, [dispatch, semesterInfo]);
+  // //TODO: refactor
+  // const handleModalPortal = useCallback(() => {
+  //   if (Object.keys(semesterInfo).length === 0) {
+  //     dispatch(openModal(MODAL_KEYS.NEW_SEMESTER));
+  //   } else {
+  //     dispatch(closeModal());
+  //   }
+  // }, [dispatch, semesterInfo]);
 
   const fetchSavedSemesters = useCallback(() => {
     axios({
@@ -135,10 +134,9 @@ function CoursePlanner() {
         />
       </div>
     </section>
-  ) :  <Loader type="Rings" color="#00BFFF" height={80} width={80} 
-  timeout={3000} 
-
-/>;
+  ) : (
+    <Loader type="Rings" color="#00BFFF" height={80} width={80} timeout={3000} />
+  );
 }
 
 CoursePlanner.propTypes = checkProps({});

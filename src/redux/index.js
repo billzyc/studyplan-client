@@ -15,6 +15,6 @@ const reducers = combineReducers({
   modal: modalReducer
 });
 
-export const initializeStore = preloadedState => {
+export const initializeStore = (preloadedState) => {
   return createStore(reducers, preloadedState, composeWithDevTools(applyMiddleware()));
 };

@@ -1,7 +1,7 @@
-import React, { useRef, useCallback, useEffect, useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import Head from 'next/head';
 import { useSelector, useDispatch } from 'react-redux';
-import { gsap } from 'gsap';
+// import { gsap } from 'gsap';
 import Link from 'next/link';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
@@ -17,7 +17,7 @@ import { withRedux } from '../redux/withRedux';
 import { setLandingLoaded } from '../redux/modules/app';
 
 function Landing() {
-  const containerRef = useRef();
+  // const containerRef = useRef();
   const dispatch = useDispatch();
   const [cookies] = useCookies(['token']);
   const router = useRouter();

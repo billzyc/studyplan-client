@@ -35,7 +35,7 @@ export const withRedux = (PageComponent, { ssr = true } = {}) => {
   }
 
   if (ssr || PageComponent.getInitialProps) {
-    WithRedux.getInitialProps = async context => {
+    WithRedux.getInitialProps = async (context) => {
       // Get or Create the store with `undefined` as initialState
       // This allows you to set a custom default initialState
       const reduxStore = getOrInitializeStore();
@@ -59,7 +59,7 @@ export const withRedux = (PageComponent, { ssr = true } = {}) => {
 };
 
 let reduxStore;
-const getOrInitializeStore = initialState => {
+const getOrInitializeStore = (initialState) => {
   // Always make a new store if server, otherwise state is shared between requests
   if (!isBrowser) {
     return initializeStore(initialState);

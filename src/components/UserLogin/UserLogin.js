@@ -7,7 +7,6 @@ import axios from 'axios';
 
 import { useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/modules/profile';
-import { replaceSemester } from '../../redux/modules/semester';
 import copy from '../../data/copy.json';
 import { API_ROUTES, apiBaseUrl, ROUTE_KEYS } from '../../data/consts';
 

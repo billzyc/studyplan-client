@@ -23,7 +23,7 @@ function App({ Component, pageProps }) {
           require('@jam3/stats')();
         }
         const { device, browser } = detect;
-        const classes = [device.isMobile ? 'mobile' : '', device.getType(), browser.getName()].filter(className =>
+        const classes = [device.isMobile ? 'mobile' : '', device.getType(), browser.getName()].filter((className) =>
           Boolean(className)
         );
         document.body.className = [...document.body.className.split(' '), ...classes].filter(Boolean).join(' ');
