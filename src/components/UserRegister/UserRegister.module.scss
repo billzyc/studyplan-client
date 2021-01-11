@@ -10,19 +10,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: px(30);
+    padding: px(25);
     border-radius: 20px;
     box-shadow: $softBoxShadow;
 
     h2 {
       color: $black;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
 
     .registerSVG {
-      width: px(300);
-      height: px(200);
-      padding-bottom: 20px;
+      width: px(200);
+      height: px(150);
+      padding-bottom: 10px;
     }
 
     input {

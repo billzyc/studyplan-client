@@ -17,7 +17,7 @@ function Navbar() {
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const dispatch = useDispatch();
   const router = useRouter();
-  const { profile } = useSelector((state) => state);
+  const { profile, app } = useSelector((state) => state);
 
   const logOut = async () => {
     await dispatch(updateCoursesLoaded(false));
@@ -29,7 +29,7 @@ function Navbar() {
   };
   return (
     <section className={classnames(styles.navbar)}>
-      {profile?.id && profile?.email ? (
+      {profile?.id && profile?.email && app.coursesLoaded ? (
         <>
           <h4>{profile.name}'s Course Plan</h4>
           <button onClick={logOut} className={classnames(styles.logOut)}>
