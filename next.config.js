@@ -38,6 +38,7 @@ const optimizedImagesConfig = {
 };
 
 const nextJSConfig = {
+  target: 'serverless',
   trailingSlash: true,
   compress: false, // NOTE: enable this when doing SSR
   devIndicators: {
