@@ -1,8 +1,10 @@
 const path = require('path');
 
-require('dotenv').config({
-  path: path.resolve(process.cwd(), `.env.${process.env.CI_ENV || process.env.NODE_ENV}`)
-});
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config({
+    path: path.resolve(process.cwd(), `.env.${process.env.CI_ENV || process.env.NODE_ENV}`)
+  });
+}
 
 const withPlugins = require('next-compose-plugins');
 const optimizedImages = require('next-optimized-images');
