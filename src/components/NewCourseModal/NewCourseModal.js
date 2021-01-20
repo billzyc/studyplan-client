@@ -58,8 +58,11 @@ const NewCourseModal = ({ unassignedBoardRef, fetchAllCourses, closeCourseModal 
         closeCourseModal();
       })
       .catch(function (error) {
-        console.log(error);
-        window.alert(copy.error.newCourse);
+        if (error?.response?.data && Object.keys(error?.response?.data).length > 0) {
+          window.alert(`${Object.keys(error.response.data)[0]}: ${Object.values(error.response.data)[0]}`);
+        } else {
+          window.alert(copy.error.newCourse);
+        }
       });
   };
 

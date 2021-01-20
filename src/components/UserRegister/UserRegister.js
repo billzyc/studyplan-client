@@ -46,7 +46,6 @@ function UserRegister() {
         router.push(ROUTE_KEYS.LOGIN);
       })
       .catch(function (error) {
-        console.log(error.response);
         if (error?.response?.data && Object.keys(error?.response?.data).length > 0) {
           window.alert(`${Object.keys(error.response.data)[0]}: ${Object.values(error.response.data)[0]}`);
         } else {

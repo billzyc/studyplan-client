@@ -28,8 +28,8 @@
   "newCourseModal": {
     "title": "add a course",
     "submit": "Add New Course",
-    "courseInput": "enter course subject (e.g CS)",
-    "numberInput": "enter course number (e.g 136)"
+    "courseInput": "subject, e.g., CS",
+    "numberInput": "number, e.g., 136"
   },
   "register": {
     "nameInput": "enter name",
