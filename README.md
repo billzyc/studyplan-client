@@ -1,9 +1,11 @@
 # My Course Plan
 
-Helps users easily plan their university courses.
+https://mystudyplan.netlify.app/courses/
 
-Front end developed with React, Redux, JavaScript, Next.js, HTML and SCSS  
-Back end developed with Python, Django, Django Rest Framework and Vagrant. Back end Code can be found at https://github.com/billzyc/studyplan-rest-api
+Helps users easily plan their university courses with Kaban boards.
+
+Built with React, Redux, JavaScript, Next.js, HTML and SCSS  
+Back end code: https://github.com/billzyc/studyplan-rest-api
 
 ## Download:
 
